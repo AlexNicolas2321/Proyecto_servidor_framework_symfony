@@ -1,0 +1,39 @@
+# Ignorar carpetas de Symfony
+/var/
+/vendor/
+/node_modules/
+/public/bundles/
+/.env.local
+.env.local.php
+/phpunit.result.cache
+/.phpunit.result.cache
+/.env.test.local
+/config/secrets/prod/prod.decrypt.private.php
+
+# Ignorar cachés y logs
+/var/cache/
+/var/log/
+/var/test/
+
+# Ignorar Docker y configuraciones locales
+docker-compose.override.yml
+docker-compose.yml
+.docker/
+.dockerignore
+.env.docker
+.env.docker.local
+
+# Ignorar IDE y editores
+/.idea/
+/*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# Ignorar archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar dependencias Composer bloqueadas
+composer.lock
