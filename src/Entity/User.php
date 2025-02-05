@@ -57,7 +57,10 @@ class User
     }
 
     
-
+    public function __toString(): string
+    {
+        return $this->Name ?? 'Unnamed User'; // Devuelve el nombre del usuario o un valor por defecto
+    }
     
 
     public function getId(): ?int

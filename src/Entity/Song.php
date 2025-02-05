@@ -40,7 +40,7 @@ class Song
     /**
      * @var Collection<int, PlaylistSong>
      */
-    #[ORM\OneToMany(targetEntity: PlaylistSong::class, mappedBy: 'song')]
+    #[ORM\OneToMany(mappedBy: 'song', targetEntity: PlaylistSong::class)]
     private Collection $playlistSongs;
 
     /**
@@ -212,4 +212,9 @@ public function setLikes(int $likes): self
    
 
     
+
+    public function __toString(): string
+    {
+        return $this->Title . ' by ' . $this->Author;
+    }
 }

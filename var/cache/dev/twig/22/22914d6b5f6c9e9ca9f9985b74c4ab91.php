@@ -14,7 +14,7 @@ use Twig\Source;
 use Twig\Template;
 use Twig\TemplateWrapper;
 
-/* @EasyAdmin/components/ActionMenu/ActionList/Content.html.twig */
+/* @ea/components/ActionMenu/ActionList/Content.html.twig */
 class __TwigTemplate_c400b3107c49a82ee72175e0cfba4d45 extends Template
 {
     private Source $source;
@@ -40,7 +40,7 @@ class __TwigTemplate_c400b3107c49a82ee72175e0cfba4d45 extends Template
     {
         $macros = $this->macros;
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@EasyAdmin/components/ActionMenu/ActionList/Content.html.twig"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@ea/components/ActionMenu/ActionList/Content.html.twig"));
 
         // line 1
         yield "<li ";
@@ -79,7 +79,7 @@ class __TwigTemplate_c400b3107c49a82ee72175e0cfba4d45 extends Template
      */
     public function getTemplateName(): string
     {
-        return "@EasyAdmin/components/ActionMenu/ActionList/Content.html.twig";
+        return "@ea/components/ActionMenu/ActionList/Content.html.twig";
     }
 
     /**
@@ -103,6 +103,6 @@ class __TwigTemplate_c400b3107c49a82ee72175e0cfba4d45 extends Template
         return new Source("<li {{ attributes }}>
     {% block content %}{% endblock %}
 </li>
-", "@EasyAdmin/components/ActionMenu/ActionList/Content.html.twig", "/var/www/symfony/Proyecto_servidor_framework_symfony/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu/ActionList/Content.html.twig");
+", "@ea/components/ActionMenu/ActionList/Content.html.twig", "/var/www/symfony/Proyecto_servidor_framework_symfony/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu/ActionList/Content.html.twig");
     }
 }

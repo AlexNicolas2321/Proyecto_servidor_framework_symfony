@@ -14,7 +14,7 @@ use Twig\Source;
 use Twig\Template;
 use Twig\TemplateWrapper;
 
-/* @EasyAdmin/components/ActionMenu/Button.html.twig */
+/* @ea/components/ActionMenu/Button.html.twig */
 class __TwigTemplate_d3d31c2033e9e17fc863e8bdc736d4c0 extends Template
 {
     private Source $source;
@@ -40,12 +40,12 @@ class __TwigTemplate_d3d31c2033e9e17fc863e8bdc736d4c0 extends Template
     {
         $macros = $this->macros;
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@EasyAdmin/components/ActionMenu/Button.html.twig"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@ea/components/ActionMenu/Button.html.twig"));
 
         // line 1
         $propsNames = [];        if (isset($context['__props']['withoutDropdownToggleMarker'])) {
         $componentClass = isset($context['this']) ? get_debug_type($context['this']) : "";
-        throw new \Twig\Error\RuntimeError('Cannot define prop "withoutDropdownToggleMarker" in template "@EasyAdmin/components/ActionMenu/Button.html.twig". Property already defined in component class "'.$componentClass.'".');
+        throw new \Twig\Error\RuntimeError('Cannot define prop "withoutDropdownToggleMarker" in template "@ea/components/ActionMenu/Button.html.twig". Property already defined in component class "'.$componentClass.'".');
         }
         $propsNames[] = 'withoutDropdownToggleMarker';        
         $context['attributes'] = $context['attributes']->remove('withoutDropdownToggleMarker');        
@@ -105,7 +105,7 @@ unset($context[$key]);
      */
     public function getTemplateName(): string
     {
-        return "@EasyAdmin/components/ActionMenu/Button.html.twig";
+        return "@ea/components/ActionMenu/Button.html.twig";
     }
 
     /**
@@ -138,6 +138,6 @@ unset($context[$key]);
 <a {{ attributes.defaults({class: css_class, href: '#', role: 'button', 'data-bs-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false'}) }}>
     {% block content %}{% endblock %}
 </a>
-", "@EasyAdmin/components/ActionMenu/Button.html.twig", "/var/www/symfony/Proyecto_servidor_framework_symfony/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu/Button.html.twig");
+", "@ea/components/ActionMenu/Button.html.twig", "/var/www/symfony/Proyecto_servidor_framework_symfony/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu/Button.html.twig");
     }
 }

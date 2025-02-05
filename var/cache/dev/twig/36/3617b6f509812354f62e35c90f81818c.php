@@ -14,7 +14,7 @@ use Twig\Source;
 use Twig\Template;
 use Twig\TemplateWrapper;
 
-/* @EasyAdmin/components/ActionMenu.html.twig */
+/* @ea/components/ActionMenu.html.twig */
 class __TwigTemplate_3138f4a295c2fceb55b2617eaf91b251 extends Template
 {
     private Source $source;
@@ -40,7 +40,7 @@ class __TwigTemplate_3138f4a295c2fceb55b2617eaf91b251 extends Template
     {
         $macros = $this->macros;
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@EasyAdmin/components/ActionMenu.html.twig"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@ea/components/ActionMenu.html.twig"));
 
         // line 5
         yield "<div ";
@@ -79,7 +79,7 @@ class __TwigTemplate_3138f4a295c2fceb55b2617eaf91b251 extends Template
      */
     public function getTemplateName(): string
     {
-        return "@EasyAdmin/components/ActionMenu.html.twig";
+        return "@ea/components/ActionMenu.html.twig";
     }
 
     /**
@@ -107,6 +107,6 @@ class __TwigTemplate_3138f4a295c2fceb55b2617eaf91b251 extends Template
 <div {{ attributes.defaults({class: 'dropdown'}) }}>
     {% block content %}{% endblock %}
 </div>
-", "@EasyAdmin/components/ActionMenu.html.twig", "/var/www/symfony/Proyecto_servidor_framework_symfony/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu.html.twig");
+", "@ea/components/ActionMenu.html.twig", "/var/www/symfony/Proyecto_servidor_framework_symfony/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu.html.twig");
     }
 }
