@@ -44,7 +44,7 @@ final class PlaylistSongController extends AbstractController
         $playlistSong = new PlaylistSong();
         $playlistSong->setPlaylist($playlist)
                     ->setSong($song)
-                    ->setReproductions(0);
+                    ->setReplays(0);
 
         // Persistir todo
         $entityManager->persist($user);
@@ -65,7 +65,7 @@ final class PlaylistSongController extends AbstractController
                     'author' => $song->getAuthor(),
                     'album' => $song->getAlbum()
                 ],
-                'reproductions' => $playlistSong->getReproductions()
+                'reproductions' => $playlistSong->getReplays()
             ]
         ]);
     }

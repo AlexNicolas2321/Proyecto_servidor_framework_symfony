@@ -34,7 +34,7 @@ class Playlist
     /**
      * @var Collection<int, PlaylistSong>
      */
-    #[ORM\OneToMany(targetEntity: PlaylistSong::class, mappedBy: 'playlist')]
+    #[ORM\OneToMany(mappedBy: 'playlist', targetEntity: PlaylistSong::class, cascade: ['persist'])]
     private Collection $playlistSongs;
 
     /**
@@ -173,9 +173,8 @@ class Playlist
         return $this;
     }
 
-   
-    
-
-    
-
+    public function __toString(): string
+    {
+        return $this->Name ?? 'Unnamed Playlist';
+    }
 }

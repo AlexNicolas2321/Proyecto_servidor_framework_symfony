@@ -21,15 +21,13 @@ class PlaylistSong
     #[ORM\JoinColumn(nullable: false)]
     private ?Song $song = null;
 
-    #[ORM\Column]
-    private ?int $reproductions = 0;
-
+    #[ORM\Column(type: 'integer')]
+    private int $replays = 0;
 
     public function __toString(): string
     {
-        return $this->playlist->getName() ?? '' . $this->song->getAuthor() ?? '';
+        return $this->getSong()->getTitle();
     }
-
 
     public function getId(): ?int
     {
@@ -58,14 +56,14 @@ class PlaylistSong
         return $this;
     }
 
-    public function getReproductions(): ?int
+    public function getReplays(): int
     {
-        return $this->reproductions;
+        return $this->replays;
     }
 
-    public function setReproductions(int $reproductions): self
+    public function setReplays(int $replays): self
     {
-        $this->reproductions = $reproductions;
+        $this->replays = $replays;
         return $this;
     }
 }

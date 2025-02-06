@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 
 class PlaylistCrudController extends AbstractCrudController
 {
@@ -27,39 +28,13 @@ class PlaylistCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('name'),
             TextField::new('visibility'),
+            IntegerField::new('Replays', 'Replays'),
+            IntegerField::new('Likes', 'Likes'),
             AssociationField::new('Owner')->setRequired(false), // Asignar un usuario existente
-            AssociationField::new('playlistSongs') // Relación con las canciones
-                ->setRequired(false)
-                ->setFormTypeOptions([
-                    'multiple' => true,
-                    'expanded' => true,
-                ])
-                ->setFormTypeOptions([
-                    'class' => Song::class, // Specify the target entity here
-                ]),
+            CollectionField::new('playlistSongs', 'Songs')
+                ->useEntryCrudForm(PlaylistSongCrudController::class)
         ];
     }
-/*
-    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        if (!$entityInstance instanceof Playlist) {
-            return;
-        }
 
-        // Persistir la playlist
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
-
-        // Aquí puedes agregar lógica adicional si es necesario
-    }
-
-    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        if (!$entityInstance instanceof Playlist) {
-            return;
-        }
-
-        // Aquí puedes agregar lógica adicional si es necesario
-        $entityManager->flush();
-    }*/ 
+   
 }

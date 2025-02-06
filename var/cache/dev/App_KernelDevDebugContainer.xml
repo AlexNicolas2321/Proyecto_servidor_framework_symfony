@@ -245,6 +245,14 @@
         <argument type="service" id=".service_locator.5PWTx9U.App\Controller\Admin\PlaylistCrudController"/>
       </call>
     </service>
+    <service id="App\Controller\Admin\PlaylistSongCrudController" class="App\Controller\Admin\PlaylistSongCrudController" public="true" autowire="true" autoconfigure="true">
+      <tag name="ea.crud_controller"/>
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.5PWTx9U.App\Controller\Admin\PlaylistSongCrudController"/>
+      </call>
+    </service>
     <service id="App\Controller\Admin\SongCrudController" class="App\Controller\Admin\SongCrudController" public="true" autowire="true" autoconfigure="true">
       <tag name="ea.crud_controller"/>
       <tag name="controller.service_arguments"/>
@@ -364,7 +372,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.DSnH26y"/>
+      <argument type="service" id=".service_locator.Q73izil"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -2614,7 +2622,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.DSnH26y"/>
+      <argument type="service" id=".service_locator.Q73izil"/>
     </service>
     <service id="routing.resolver" class="Symfony\Component\Config\Loader\LoaderResolver">
       <call method="addLoader">
@@ -5799,6 +5807,10 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\PlaylistCrudController" class="App\Controller\Admin\PlaylistCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\PlaylistCrudController" class="App\Controller\Admin\PlaylistCrudController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\PlaylistCrudController" class="App\Controller\Admin\PlaylistCrudController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\PlaylistSongCrudController" class="App\Controller\Admin\PlaylistSongCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\PlaylistSongCrudController" class="App\Controller\Admin\PlaylistSongCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\PlaylistSongCrudController" class="App\Controller\Admin\PlaylistSongCrudController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\PlaylistSongCrudController" class="App\Controller\Admin\PlaylistSongCrudController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\SongCrudController" class="App\Controller\Admin\SongCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\SongCrudController" class="App\Controller\Admin\SongCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\SongCrudController" class="App\Controller\Admin\SongCrudController" autowire="true" abstract="true"/>
@@ -6632,6 +6644,132 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ib1WIGE" method="withContext"/>
     </service>
+    <service id=".service_locator.OoSfY9L.App\Controller\Admin\PlaylistSongCrudController::configureCrud()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::configureCrud()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::configureCrud()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.OoSfY9L" method="withContext"/>
+    </service>
+    <service id=".service_locator.PE.ZUUL.App\Controller\Admin\PlaylistSongCrudController::configureAssets()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::configureAssets()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::configureAssets()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.PE.ZUUL" method="withContext"/>
+    </service>
+    <service id=".service_locator.T.Ra9lS.App\Controller\Admin\PlaylistSongCrudController::configureActions()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::configureActions()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::configureActions()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.T.Ra9lS" method="withContext"/>
+    </service>
+    <service id=".service_locator.CFbfVRp.App\Controller\Admin\PlaylistSongCrudController::configureFilters()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::configureFilters()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::configureFilters()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CFbfVRp" method="withContext"/>
+    </service>
+    <service id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::index()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::index()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.IaSFwjD" method="withContext"/>
+    </service>
+    <service id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::detail()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::detail()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::detail()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.IaSFwjD" method="withContext"/>
+    </service>
+    <service id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::edit()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::edit()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.IaSFwjD" method="withContext"/>
+    </service>
+    <service id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::new()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::new()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::new()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.IaSFwjD" method="withContext"/>
+    </service>
+    <service id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::delete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::delete()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::delete()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.IaSFwjD" method="withContext"/>
+    </service>
+    <service id=".service_locator.oDo8ofG.App\Controller\Admin\PlaylistSongCrudController::batchDelete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::batchDelete()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::batchDelete()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.oDo8ofG" method="withContext"/>
+    </service>
+    <service id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::autocomplete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::autocomplete()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::autocomplete()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.IaSFwjD" method="withContext"/>
+    </service>
+    <service id=".service_locator.kqcX6wc.App\Controller\Admin\PlaylistSongCrudController::createIndexQueryBuilder()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::createIndexQueryBuilder()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::createIndexQueryBuilder()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.kqcX6wc" method="withContext"/>
+    </service>
+    <service id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::renderFilters()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::renderFilters()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::renderFilters()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.IaSFwjD" method="withContext"/>
+    </service>
+    <service id=".service_locator.egipcEH.App\Controller\Admin\PlaylistSongCrudController::updateEntity()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::updateEntity()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::updateEntity()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.egipcEH" method="withContext"/>
+    </service>
+    <service id=".service_locator.egipcEH.App\Controller\Admin\PlaylistSongCrudController::persistEntity()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::persistEntity()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::persistEntity()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.egipcEH" method="withContext"/>
+    </service>
+    <service id=".service_locator.egipcEH.App\Controller\Admin\PlaylistSongCrudController::deleteEntity()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::deleteEntity()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::deleteEntity()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.egipcEH" method="withContext"/>
+    </service>
+    <service id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistSongCrudController::createEditForm()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::createEditForm()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::createEditForm()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CaejQBj" method="withContext"/>
+    </service>
+    <service id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistSongCrudController::createEditFormBuilder()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::createEditFormBuilder()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::createEditFormBuilder()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CaejQBj" method="withContext"/>
+    </service>
+    <service id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistSongCrudController::createNewForm()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::createNewForm()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::createNewForm()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CaejQBj" method="withContext"/>
+    </service>
+    <service id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistSongCrudController::createNewFormBuilder()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::createNewFormBuilder()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::createNewFormBuilder()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CaejQBj" method="withContext"/>
+    </service>
+    <service id=".service_locator.ib1WIGE.App\Controller\Admin\PlaylistSongCrudController::configureResponseParameters()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController::configureResponseParameters()"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController::configureResponseParameters()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ib1WIGE" method="withContext"/>
+    </service>
     <service id=".service_locator.OoSfY9L.App\Controller\Admin\SongCrudController::configureCrud()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Admin\SongCrudController::configureCrud()"/>
       <argument>App\Controller\Admin\SongCrudController::configureCrud()</argument>
@@ -6926,7 +7064,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.egipcEH" method="withContext"/>
     </service>
-    <service id=".service_locator.DSnH26y" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Q73izil" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -6955,6 +7093,27 @@
         <argument key="App\Controller\Admin\PlaylistCrudController::createNewForm" type="service_closure" id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistCrudController::createNewForm()"/>
         <argument key="App\Controller\Admin\PlaylistCrudController::createNewFormBuilder" type="service_closure" id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistCrudController::createNewFormBuilder()"/>
         <argument key="App\Controller\Admin\PlaylistCrudController::configureResponseParameters" type="service_closure" id=".service_locator.ib1WIGE.App\Controller\Admin\PlaylistCrudController::configureResponseParameters()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::configureCrud" type="service_closure" id=".service_locator.OoSfY9L.App\Controller\Admin\PlaylistSongCrudController::configureCrud()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::configureAssets" type="service_closure" id=".service_locator.PE.ZUUL.App\Controller\Admin\PlaylistSongCrudController::configureAssets()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::configureActions" type="service_closure" id=".service_locator.T.Ra9lS.App\Controller\Admin\PlaylistSongCrudController::configureActions()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::configureFilters" type="service_closure" id=".service_locator.CFbfVRp.App\Controller\Admin\PlaylistSongCrudController::configureFilters()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::index" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::index()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::detail" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::detail()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::edit" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::edit()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::new" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::new()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::delete" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::delete()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::batchDelete" type="service_closure" id=".service_locator.oDo8ofG.App\Controller\Admin\PlaylistSongCrudController::batchDelete()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::autocomplete" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::autocomplete()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::createIndexQueryBuilder" type="service_closure" id=".service_locator.kqcX6wc.App\Controller\Admin\PlaylistSongCrudController::createIndexQueryBuilder()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::renderFilters" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::renderFilters()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::updateEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\PlaylistSongCrudController::updateEntity()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::persistEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\PlaylistSongCrudController::persistEntity()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::deleteEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\PlaylistSongCrudController::deleteEntity()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::createEditForm" type="service_closure" id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistSongCrudController::createEditForm()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::createEditFormBuilder" type="service_closure" id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistSongCrudController::createEditFormBuilder()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::createNewForm" type="service_closure" id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistSongCrudController::createNewForm()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::createNewFormBuilder" type="service_closure" id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistSongCrudController::createNewFormBuilder()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController::configureResponseParameters" type="service_closure" id=".service_locator.ib1WIGE.App\Controller\Admin\PlaylistSongCrudController::configureResponseParameters()"/>
         <argument key="App\Controller\Admin\SongCrudController::configureCrud" type="service_closure" id=".service_locator.OoSfY9L.App\Controller\Admin\SongCrudController::configureCrud()"/>
         <argument key="App\Controller\Admin\SongCrudController::configureAssets" type="service_closure" id=".service_locator.PE.ZUUL.App\Controller\Admin\SongCrudController::configureAssets()"/>
         <argument key="App\Controller\Admin\SongCrudController::configureActions" type="service_closure" id=".service_locator.T.Ra9lS.App\Controller\Admin\SongCrudController::configureActions()"/>
@@ -7028,6 +7187,27 @@
         <argument key="App\Controller\Admin\PlaylistCrudController:createNewForm" type="service_closure" id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistCrudController::createNewForm()"/>
         <argument key="App\Controller\Admin\PlaylistCrudController:createNewFormBuilder" type="service_closure" id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistCrudController::createNewFormBuilder()"/>
         <argument key="App\Controller\Admin\PlaylistCrudController:configureResponseParameters" type="service_closure" id=".service_locator.ib1WIGE.App\Controller\Admin\PlaylistCrudController::configureResponseParameters()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:configureCrud" type="service_closure" id=".service_locator.OoSfY9L.App\Controller\Admin\PlaylistSongCrudController::configureCrud()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:configureAssets" type="service_closure" id=".service_locator.PE.ZUUL.App\Controller\Admin\PlaylistSongCrudController::configureAssets()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:configureActions" type="service_closure" id=".service_locator.T.Ra9lS.App\Controller\Admin\PlaylistSongCrudController::configureActions()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:configureFilters" type="service_closure" id=".service_locator.CFbfVRp.App\Controller\Admin\PlaylistSongCrudController::configureFilters()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:index" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::index()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:detail" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::detail()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:edit" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::edit()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:new" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::new()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:delete" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::delete()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:batchDelete" type="service_closure" id=".service_locator.oDo8ofG.App\Controller\Admin\PlaylistSongCrudController::batchDelete()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:autocomplete" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::autocomplete()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:createIndexQueryBuilder" type="service_closure" id=".service_locator.kqcX6wc.App\Controller\Admin\PlaylistSongCrudController::createIndexQueryBuilder()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:renderFilters" type="service_closure" id=".service_locator.IaSFwjD.App\Controller\Admin\PlaylistSongCrudController::renderFilters()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:updateEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\PlaylistSongCrudController::updateEntity()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:persistEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\PlaylistSongCrudController::persistEntity()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:deleteEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\PlaylistSongCrudController::deleteEntity()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:createEditForm" type="service_closure" id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistSongCrudController::createEditForm()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:createEditFormBuilder" type="service_closure" id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistSongCrudController::createEditFormBuilder()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:createNewForm" type="service_closure" id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistSongCrudController::createNewForm()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:createNewFormBuilder" type="service_closure" id=".service_locator.CaejQBj.App\Controller\Admin\PlaylistSongCrudController::createNewFormBuilder()"/>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController:configureResponseParameters" type="service_closure" id=".service_locator.ib1WIGE.App\Controller\Admin\PlaylistSongCrudController::configureResponseParameters()"/>
         <argument key="App\Controller\Admin\SongCrudController:configureCrud" type="service_closure" id=".service_locator.OoSfY9L.App\Controller\Admin\SongCrudController::configureCrud()"/>
         <argument key="App\Controller\Admin\SongCrudController:configureAssets" type="service_closure" id=".service_locator.PE.ZUUL.App\Controller\Admin\SongCrudController::configureAssets()"/>
         <argument key="App\Controller\Admin\SongCrudController:configureActions" type="service_closure" id=".service_locator.T.Ra9lS.App\Controller\Admin\SongCrudController::configureActions()"/>
@@ -7285,21 +7465,25 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry" class="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry">
       <argument type="collection">
         <argument key="App\Controller\Admin\PlaylistCrudController">App\Entity\Playlist</argument>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController">App\Entity\PlaylistSong</argument>
         <argument key="App\Controller\Admin\SongCrudController">App\Entity\Song</argument>
         <argument key="App\Controller\Admin\StyleCrudController">App\Entity\Style</argument>
       </argument>
       <argument type="collection">
         <argument key="App\Controller\Admin\PlaylistCrudController">9b596a3</argument>
+        <argument key="App\Controller\Admin\PlaylistSongCrudController">108155f</argument>
         <argument key="App\Controller\Admin\SongCrudController">85ef802</argument>
         <argument key="App\Controller\Admin\StyleCrudController">cd2d467</argument>
       </argument>
       <argument type="collection">
         <argument key="App\Entity\Playlist">App\Controller\Admin\PlaylistCrudController</argument>
+        <argument key="App\Entity\PlaylistSong">App\Controller\Admin\PlaylistSongCrudController</argument>
         <argument key="App\Entity\Song">App\Controller\Admin\SongCrudController</argument>
         <argument key="App\Entity\Style">App\Controller\Admin\StyleCrudController</argument>
       </argument>
       <argument type="collection">
         <argument key="9b596a3">App\Controller\Admin\PlaylistCrudController</argument>
+        <argument key="108155f">App\Controller\Admin\PlaylistSongCrudController</argument>
         <argument key="85ef802">App\Controller\Admin\SongCrudController</argument>
         <argument key="cd2d467">App\Controller\Admin\StyleCrudController</argument>
       </argument>
@@ -7378,6 +7562,12 @@
     <service id=".service_locator.5PWTx9U.App\Controller\Admin\PlaylistCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistCrudController"/>
       <argument>App\Controller\Admin\PlaylistCrudController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.5PWTx9U" method="withContext"/>
+    </service>
+    <service id=".service_locator.5PWTx9U.App\Controller\Admin\PlaylistSongCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PlaylistSongCrudController"/>
+      <argument>App\Controller\Admin\PlaylistSongCrudController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.5PWTx9U" method="withContext"/>
     </service>
@@ -7612,6 +7802,7 @@
           <argument>App\Kernel</argument>
           <argument>App\Controller\Admin\DashboardController</argument>
           <argument>App\Controller\Admin\PlaylistCrudController</argument>
+          <argument>App\Controller\Admin\PlaylistSongCrudController</argument>
           <argument>App\Controller\Admin\SongCrudController</argument>
           <argument>App\Controller\Admin\StyleCrudController</argument>
           <argument>App\Controller\PlaylistController</argument>
@@ -8642,7 +8833,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Contracts\Orm\EntityPaginatorInterface" alias="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityPaginator"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.DSnH26y"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.Q73izil"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface" alias="logger"/>
