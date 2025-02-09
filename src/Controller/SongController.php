@@ -7,17 +7,28 @@ use App\Entity\Style;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-final class SongController extends AbstractController
+class SongController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+
+
+
     #[Route('/song/new', name: 'app_song')]
-    public function index(EntityManagerInterface $entityManager): JsonResponse
+    public function index1(): JsonResponse
     {
         // Crear un estilo
         $style = new Style();
         $style->setName('Rock')
-              ->setDescription('Género musical caracterizado por guitarras eléctricas y batería');
+            ->setDescription('Género musical caracterizado por guitarras eléctricas y batería');
 
         // Crear una canción
         $song = new Song();
@@ -27,12 +38,13 @@ final class SongController extends AbstractController
             ->setAuthor('Queen')
             ->setReplays(250000000)
             ->setLikes(5000000)
-            ->setGenre($style);
+            ->setGenre($style)
+            ->setFile("BohemianRhapsody");
 
         // Persistir entidades
-        $entityManager->persist($style);
-        $entityManager->persist($song);
-        $entityManager->flush();
+        $this->entityManager->persist($style);
+        $this->entityManager->persist($song);
+        $this->entityManager->flush();
 
         return $this->json([
             'message' => 'Song created successfully!',
@@ -50,4 +62,6 @@ final class SongController extends AbstractController
             ]
         ]);
     }
+
+    
 }

@@ -33,6 +33,10 @@ class Song
     #[ORM\Column]
     private ?int $Likes = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $File = null;
+
+
     #[ORM\ManyToOne(targetEntity: Style::class, inversedBy: 'songs')]
     #[ORM\JoinColumn(nullable: true)]
     private ?Style $Genre = null;
@@ -48,6 +52,8 @@ class Song
      */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'songs')]
     private Collection $users;
+
+   
 
     public function __construct()
     {
@@ -216,5 +222,17 @@ public function setLikes(int $likes): self
     public function __toString(): string
     {
         return $this->Title . ' by ' . $this->Author;
+    }
+
+    public function getFile(): ?string
+    {
+        return $this->File;
+    }
+
+    public function setFile(string $File): static
+    {
+        $this->File = $File;
+
+        return $this;
     }
 }

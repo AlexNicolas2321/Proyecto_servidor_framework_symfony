@@ -21,6 +21,7 @@ class SongCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('Title', 'Título'),
+            TextField::new('File', 'FileName'),
             IntegerField::new('Duration', 'Duración (segundos)'),
             TextField::new('album', 'Álbum'),
             TextField::new('Author', 'Autor'),

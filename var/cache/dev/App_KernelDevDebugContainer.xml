@@ -269,6 +269,14 @@
         <argument type="service" id=".service_locator.5PWTx9U.App\Controller\Admin\StyleCrudController"/>
       </call>
     </service>
+    <service id="App\Controller\IndexController" class="App\Controller\IndexController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\IndexController"/>
+      </call>
+    </service>
     <service id="App\Controller\PlaylistController" class="App\Controller\PlaylistController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -293,6 +301,7 @@
     <service id="App\Controller\SongController" class="App\Controller\SongController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\SongController"/>
       </call>
@@ -372,7 +381,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.Q73izil"/>
+      <argument type="service" id=".service_locator.9uScopd"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -2622,7 +2631,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.Q73izil"/>
+      <argument type="service" id=".service_locator.9uScopd"/>
     </service>
     <service id="routing.resolver" class="Symfony\Component\Config\Loader\LoaderResolver">
       <call method="addLoader">
@@ -5819,6 +5828,9 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\StyleCrudController" class="App\Controller\Admin\StyleCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\StyleCrudController" class="App\Controller\Admin\StyleCrudController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\StyleCrudController" class="App\Controller\Admin\StyleCrudController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\IndexController" class="App\Controller\IndexController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\IndexController" class="App\Controller\IndexController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\IndexController" class="App\Controller\IndexController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PlaylistController" class="App\Controller\PlaylistController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PlaylistController" class="App\Controller\PlaylistController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PlaylistController" class="App\Controller\PlaylistController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7040,12 +7052,6 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.egipcEH" method="withContext"/>
     </service>
-    <service id=".service_locator.egipcEH.App\Controller\SongController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\SongController::index()"/>
-      <argument>App\Controller\SongController::index()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.egipcEH" method="withContext"/>
-    </service>
     <service id=".service_locator.egipcEH.App\Controller\StyleController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\StyleController::index()"/>
       <argument>App\Controller\StyleController::index()</argument>
@@ -7064,7 +7070,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.egipcEH" method="withContext"/>
     </service>
-    <service id=".service_locator.Q73izil" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.9uScopd" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -7159,7 +7165,6 @@
         <argument key="App\Controller\PlaylistController::index" type="service_closure" id=".service_locator.egipcEH.App\Controller\PlaylistController::index()"/>
         <argument key="App\Controller\PlaylistSongController::createPlaylistWithSong" type="service_closure" id=".service_locator.egipcEH.App\Controller\PlaylistSongController::createPlaylistWithSong()"/>
         <argument key="App\Controller\ProfileController::index" type="service_closure" id=".service_locator.egipcEH.App\Controller\ProfileController::index()"/>
-        <argument key="App\Controller\SongController::index" type="service_closure" id=".service_locator.egipcEH.App\Controller\SongController::index()"/>
         <argument key="App\Controller\StyleController::index" type="service_closure" id=".service_locator.egipcEH.App\Controller\StyleController::index()"/>
         <argument key="App\Controller\UserController::index" type="service_closure" id=".service_locator.egipcEH.App\Controller\UserController::index()"/>
         <argument key="App\Controller\UserPlaylistController::index" type="service_closure" id=".service_locator.egipcEH.App\Controller\UserPlaylistController::index()"/>
@@ -7253,7 +7258,6 @@
         <argument key="App\Controller\PlaylistController:index" type="service_closure" id=".service_locator.egipcEH.App\Controller\PlaylistController::index()"/>
         <argument key="App\Controller\PlaylistSongController:createPlaylistWithSong" type="service_closure" id=".service_locator.egipcEH.App\Controller\PlaylistSongController::createPlaylistWithSong()"/>
         <argument key="App\Controller\ProfileController:index" type="service_closure" id=".service_locator.egipcEH.App\Controller\ProfileController::index()"/>
-        <argument key="App\Controller\SongController:index" type="service_closure" id=".service_locator.egipcEH.App\Controller\SongController::index()"/>
         <argument key="App\Controller\StyleController:index" type="service_closure" id=".service_locator.egipcEH.App\Controller\StyleController::index()"/>
         <argument key="App\Controller\UserController:index" type="service_closure" id=".service_locator.egipcEH.App\Controller\UserController::index()"/>
         <argument key="App\Controller\UserPlaylistController:index" type="service_closure" id=".service_locator.egipcEH.App\Controller\UserPlaylistController::index()"/>
@@ -7597,6 +7601,12 @@
         <argument key="parameter_bag" type="service_closure" id="parameter_bag" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\IndexController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\IndexController"/>
+      <argument>App\Controller\IndexController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
     <service id=".service_locator.ZyP9f7K.App\Controller\PlaylistController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\PlaylistController"/>
       <argument>App\Controller\PlaylistController</argument>
@@ -7805,6 +7815,7 @@
           <argument>App\Controller\Admin\PlaylistSongCrudController</argument>
           <argument>App\Controller\Admin\SongCrudController</argument>
           <argument>App\Controller\Admin\StyleCrudController</argument>
+          <argument>App\Controller\IndexController</argument>
           <argument>App\Controller\PlaylistController</argument>
           <argument>App\Controller\PlaylistSongController</argument>
           <argument>App\Controller\ProfileController</argument>
@@ -8833,7 +8844,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Contracts\Orm\EntityPaginatorInterface" alias="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityPaginator"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.Q73izil"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.9uScopd"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface" alias="logger"/>

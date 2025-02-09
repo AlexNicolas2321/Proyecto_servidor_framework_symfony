@@ -24,6 +24,7 @@ class Song extends \App\Entity\Song implements \Doctrine\ORM\Proxy\InternalProxy
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
         "\0".parent::class."\0".'Author' => [parent::class, 'Author', null],
         "\0".parent::class."\0".'Duration' => [parent::class, 'Duration', null],
+        "\0".parent::class."\0".'File' => [parent::class, 'File', null],
         "\0".parent::class."\0".'Genre' => [parent::class, 'Genre', null],
         "\0".parent::class."\0".'Likes' => [parent::class, 'Likes', null],
         "\0".parent::class."\0".'Replays' => [parent::class, 'Replays', null],
@@ -34,6 +35,7 @@ class Song extends \App\Entity\Song implements \Doctrine\ORM\Proxy\InternalProxy
         "\0".parent::class."\0".'users' => [parent::class, 'users', null],
         'Author' => [parent::class, 'Author', null],
         'Duration' => [parent::class, 'Duration', null],
+        'File' => [parent::class, 'File', null],
         'Genre' => [parent::class, 'Genre', null],
         'Likes' => [parent::class, 'Likes', null],
         'Replays' => [parent::class, 'Replays', null],

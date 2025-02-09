@@ -14,7 +14,7 @@ use Twig\Source;
 use Twig\Template;
 use Twig\TemplateWrapper;
 
-/* @ea/components/ActionMenu/ActionList/Item.html.twig */
+/* @EasyAdmin/components/ActionMenu/ActionList/Item.html.twig */
 class __TwigTemplate_1f3a59047376791459ced8ff76c042fe extends Template
 {
     private Source $source;
@@ -39,12 +39,12 @@ class __TwigTemplate_1f3a59047376791459ced8ff76c042fe extends Template
     {
         $macros = $this->macros;
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@ea/components/ActionMenu/ActionList/Item.html.twig"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@EasyAdmin/components/ActionMenu/ActionList/Item.html.twig"));
 
         // line 1
         $propsNames = [];        if (isset($context['__props']['label'])) {
         $componentClass = isset($context['this']) ? get_debug_type($context['this']) : "";
-        throw new \Twig\Error\RuntimeError('Cannot define prop "label" in template "@ea/components/ActionMenu/ActionList/Item.html.twig". Property already defined in component class "'.$componentClass.'".');
+        throw new \Twig\Error\RuntimeError('Cannot define prop "label" in template "@EasyAdmin/components/ActionMenu/ActionList/Item.html.twig". Property already defined in component class "'.$componentClass.'".');
         }
         $propsNames[] = 'label';        
         $context['attributes'] = $context['attributes']->remove('label');        
@@ -55,7 +55,7 @@ class __TwigTemplate_1f3a59047376791459ced8ff76c042fe extends Template
         }
         if (isset($context['__props']['renderLabelRaw'])) {
         $componentClass = isset($context['this']) ? get_debug_type($context['this']) : "";
-        throw new \Twig\Error\RuntimeError('Cannot define prop "renderLabelRaw" in template "@ea/components/ActionMenu/ActionList/Item.html.twig". Property already defined in component class "'.$componentClass.'".');
+        throw new \Twig\Error\RuntimeError('Cannot define prop "renderLabelRaw" in template "@EasyAdmin/components/ActionMenu/ActionList/Item.html.twig". Property already defined in component class "'.$componentClass.'".');
         }
         $propsNames[] = 'renderLabelRaw';        
         $context['attributes'] = $context['attributes']->remove('renderLabelRaw');        
@@ -66,7 +66,7 @@ class __TwigTemplate_1f3a59047376791459ced8ff76c042fe extends Template
         }
         if (isset($context['__props']['icon'])) {
         $componentClass = isset($context['this']) ? get_debug_type($context['this']) : "";
-        throw new \Twig\Error\RuntimeError('Cannot define prop "icon" in template "@ea/components/ActionMenu/ActionList/Item.html.twig". Property already defined in component class "'.$componentClass.'".');
+        throw new \Twig\Error\RuntimeError('Cannot define prop "icon" in template "@EasyAdmin/components/ActionMenu/ActionList/Item.html.twig". Property already defined in component class "'.$componentClass.'".');
         }
         $propsNames[] = 'icon';        
         $context['attributes'] = $context['attributes']->remove('icon');        
@@ -77,7 +77,7 @@ class __TwigTemplate_1f3a59047376791459ced8ff76c042fe extends Template
         }
         if (isset($context['__props']['url'])) {
         $componentClass = isset($context['this']) ? get_debug_type($context['this']) : "";
-        throw new \Twig\Error\RuntimeError('Cannot define prop "url" in template "@ea/components/ActionMenu/ActionList/Item.html.twig". Property already defined in component class "'.$componentClass.'".');
+        throw new \Twig\Error\RuntimeError('Cannot define prop "url" in template "@EasyAdmin/components/ActionMenu/ActionList/Item.html.twig". Property already defined in component class "'.$componentClass.'".');
         }
         $propsNames[] = 'url';        
         $context['attributes'] = $context['attributes']->remove('url');        
@@ -88,7 +88,7 @@ class __TwigTemplate_1f3a59047376791459ced8ff76c042fe extends Template
         }
         if (isset($context['__props']['htmlAttributes'])) {
         $componentClass = isset($context['this']) ? get_debug_type($context['this']) : "";
-        throw new \Twig\Error\RuntimeError('Cannot define prop "htmlAttributes" in template "@ea/components/ActionMenu/ActionList/Item.html.twig". Property already defined in component class "'.$componentClass.'".');
+        throw new \Twig\Error\RuntimeError('Cannot define prop "htmlAttributes" in template "@EasyAdmin/components/ActionMenu/ActionList/Item.html.twig". Property already defined in component class "'.$componentClass.'".');
         }
         $propsNames[] = 'htmlAttributes';        
         $context['attributes'] = $context['attributes']->remove('htmlAttributes');        
@@ -138,7 +138,7 @@ unset($context[$key]);
      */
     public function getTemplateName(): string
     {
-        return "@ea/components/ActionMenu/ActionList/Item.html.twig";
+        return "@EasyAdmin/components/ActionMenu/ActionList/Item.html.twig";
     }
 
     /**
@@ -173,6 +173,6 @@ unset($context[$key]);
         {%- if label is not empty -%}<span {{ attributes.nested('label') }}>{{ renderLabelRaw ? label|raw : label }}</span>{%- endif -%}
     </a>
 </li>
-", "@ea/components/ActionMenu/ActionList/Item.html.twig", "/var/www/symfony/Proyecto_servidor_framework_symfony/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu/ActionList/Item.html.twig");
+", "@EasyAdmin/components/ActionMenu/ActionList/Item.html.twig", "/var/www/symfony/Proyecto_servidor_framework_symfony/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu/ActionList/Item.html.twig");
     }
 }
