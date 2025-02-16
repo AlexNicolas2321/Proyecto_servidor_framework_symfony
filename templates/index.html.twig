@@ -1,0 +1,72 @@
+<!-- templates/index.html.twig -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <title>Página Principal de Spotify Simple</title>
+</head>
+<body>
+ <header>
+        <!-- Imagen de inicio -->
+        <img class="image" src="/img/Spotify_logo.png" alt="Imagen 1">
+        
+        <!-- Campo de búsqueda y botón dentro de un contenedor flex -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Song...">
+            <button >Search</button>
+        </div>
+
+        <!-- Imagen de final -->
+        <img class="image" src="/img/User.jpg" alt="Imagen 2">
+    </header>
+
+
+<main>
+    <div id="options">
+        <h1>Your library</h1>
+        <button id="mySongs">mySongs</button>
+        <button id="myPlaylists">myPlaylists</button>
+    </div>
+
+    <div id="all_songs">
+        <h2 id="songs_playlist"></h2>
+        <div id="dynamic-content">
+            <!-- Contenido dinámico aquí -->
+        </div>
+    </div>
+</main>
+
+
+
+<footer>
+    <div id="current-song">
+        <img id="song-image" src="">
+        <h2 id="song-title"></h2>
+        <audio id="audio-player" controls>
+            <source id="audio-source" src="" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+    </div>
+
+    <div class="navigation-buttons">
+        <button id="prev">Previous</button>
+        <button id="next">Next</button>
+    </div>
+</footer>
+
+
+
+
+
+
+    <script>
+        // Pasar las canciones a una variable de JavaScript
+        const songs = {{ songs|json_encode|raw }};
+        const playList = {{ playList|json_encode|raw }};
+
+    </script>
+    <script src="{{ asset('js/script.js') }}"></script>
+</body>
+</html>

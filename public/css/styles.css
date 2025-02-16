@@ -1,0 +1,190 @@
+/* Asegura que el cuerpo ocupe toda la pantalla y mantenga el footer abajo */
+html, body {
+    height: 100%; /* La página ocupa toda la pantalla */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9fafb; /* Fondo suave para el cuerpo */
+}
+
+header {
+    background-color: #1d4ed8; /* Azul intenso elegante */
+    color: white; /* Texto en blanco */
+    display: flex; /* Usar flexbox para alinear elementos */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center;
+    padding: 10px 20px;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    background-color: #e0f2fe;
+}
+
+#options {
+    background-color: #0284c7;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%; /* Zona izquierda fija */
+}
+
+#options h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#options button {
+    display: block;
+    background-color: #0369a1;
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#options button:hover {
+    background-color: #1e40af;
+}
+
+#all_songs {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 70%; /* Zona derecha dinámica */
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    display: grid; /* Usar grid para organizar las canciones/playlists */
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    gap: 20px; /* Espacio entre elementos */
+}
+
+#all_songs h2 {
+    margin-top: 0;
+}
+
+#dynamic-content {
+    margin-top: 20px;
+}
+
+/* Estilos para cada canción o playlist */
+.song-item {
+    background-color: #e0f2fe;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.song-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.song-item img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.song-item h3 {
+    font-size: 18px;
+    color: #1d4ed8;
+}
+
+
+
+footer {
+    background-color: #0369a1; /* Azul más oscuro */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.image {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-container input {
+    padding: 8px;
+    font-size: 16px;
+    width: 200px;
+    border: 2px solid #0284c7; /* Borde azul suave */
+    border-radius: 4px;
+}
+
+.search-container button {
+    background-color: #0284c7;
+    color: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: #0369a1; /* Color más oscuro al hacer hover */
+}
+
+.content {
+    flex: 1;
+}
+
+#current-song {
+    margin: 10px 0;
+}
+
+.navigation-buttons {
+    margin-top: 10px;
+}
+
+.navigation-buttons button {
+    background-color: #0284c7;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.navigation-buttons button:hover {
+    background-color: #0369a1;
+}
+
+
+
+
+/*paragraph title songs*/
+
+.song-paragraph {
+    font-size: 18px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita para el título */
+    color: #1d4ed8; /* Color de texto azul oscuro */
+    background-color: #e0f2fe; /* Fondo suave y azul claro */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px 15px; /* Espaciado interno */
+    margin-bottom: 10px; /* Espacio debajo del párrafo */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: all 0.3s ease; /* Transición para suavizar los efectos */
+}
