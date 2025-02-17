@@ -7,14 +7,14 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/dbal": "^3",
-        "doctrine/doctrine-bundle": "^2.13",
-        "doctrine/doctrine-migrations-bundle": "^3.4",
-        "doctrine/orm": "^3.3",
-        "easycorp/easyadmin-bundle": "^4.24",
+        "doctrine/dbal": "^3.9.4",
+        "doctrine/doctrine-bundle": "^2.13.2",
+        "doctrine/doctrine-migrations-bundle": "^3.4.1",
+        "doctrine/orm": "^3.3.2",
+        "easycorp/easyadmin-bundle": "^4.24.3",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
-        "symfony/flex": "^2",
+        "symfony/flex": "^2.4.7",
         "symfony/framework-bundle": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/security-bundle": "7.2.*",
@@ -72,6 +72,6 @@
         }
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.62"
+        "symfony/maker-bundle": "^1.62.1"
     }
 }
