@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Security;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -55,8 +56,16 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
+        $user = $token->getUser();
 
-        return new RedirectResponse($this->router->generate('app_home'));
+        // Verificar el rol del usuario y redirigir a la página correspondiente
+        if ($user->getRoles('ROLE_ADMIN')) {
+            // Redirigir a la página de administración
+            return new RedirectResponse($this->router->generate('admin'));
+        } elseif ($user->getRoles('ROLE_MANAGER')) {
+            // Redirigir a la página del manager
+            return new RedirectResponse($this->router->generate('statistics'));
+        }
     }
 
     protected function getLoginUrl(Request $request): string

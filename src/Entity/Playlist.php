@@ -69,15 +69,15 @@ class Playlist
         return $this;
     }
 
-    public function getVisibility(): ?string
+    public function getVisibility(): ?bool
     {
         return $this->Visibility;
     }
 
-    public function setVisibility(string $Visibility)
+    public function setVisibility(bool $visibility): self
     {
-        $this->Visibility = $Visibility;
-
+        $this->Visibility = $visibility;
+    
         return $this;
     }
 

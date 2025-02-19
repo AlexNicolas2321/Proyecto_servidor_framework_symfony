@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Estadísticas{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Estadísticas de Reproducciones</h2>
+
+    <!-- Gráfico de Playlists Más Reproducidas -->
+    <h3>Playlists Más Reproducidas</h3>
+    <canvas id="reproduccionesChart"></canvas>
+
+    <!-- Gráfico de Playlists Más Likeadas -->
+    <h3>Playlists Más Likeadas</h3>
+    <canvas id="likesChart"></canvas>
+
+    <!-- Gráfico de Canciones Más Reproducidas -->
+    <h3>Canciones Más Reproducidas</h3>
+    <canvas id="songsReplaysChart"></canvas>
+
+    <!-- Gráfico de Edades de Usuarios -->
+    <h3>Distribución de Edad de Usuarios</h3>
+    <canvas id="userAgeChart"></canvas>
+
+    <!-- Gráfico de Reproducciones por Estilo de Música -->
+    <h3>Reproducciones por Estilo de Música</h3>
+    <canvas id="styleReplaysChart"></canvas>
+</div>
+
+<!-- Cargar Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("{{ path('statistics_data') }}")
+    .then(response => response.json())
+    .then(data => {
+        // 🔹 PLAYLISTS MÁS REPRODUCIDAS
+        createChart(
+            "reproduccionesChart",
+            "bar",
+            data.playlist_most_replays.map(item => item.Playlist),
+            data.playlist_most_replays.map(item => item.Replays),
+            "Total Reproducciones"
+        );
+
+        // 🔹 PLAYLISTS MÁS LIKEADAS
+        createChart(
+            "likesChart",
+            "bar",
+            data.playlist_most_likes.map(item => item.Playlist),
+            data.playlist_most_likes.map(item => item.Likes),
+            "Total Likes"
+        );
+
+        // 🔹 CANCIONES MÁS REPRODUCIDAS
+        createChart(
+            "songsReplaysChart",
+            "bar",
+            data.song_most_replays.map(item => item.Song),
+            data.song_most_replays.map(item => item.Replays),
+            "Total Reproducciones por Canción"
+        );
+
+        // 🔹 EDADES DE USUARIOS
+        createChart(
+            "userAgeChart",
+            "bar",
+            data.obtainUserAgeData.map(item => item.Age),
+            data.obtainUserAgeData.map(item => item.ageAmount), // Cantidad de usuarios por edad
+            "Distribución de Edades"
+        );
+
+        // 🔹 REPRODUCCIONES POR ESTILO DE MÚSICA
+        createChart(
+            "styleReplaysChart",
+            "bar",
+            data.obtainSongsStyleMostReplayedData.map(item => item.Style),
+            data.obtainSongsStyleMostReplayedData.map(item => item.StyleSongReplays),
+            "Reproducciones por Estilo"
+        );
+    })
+    .catch(error => console.error("Error cargando los datos:", error));
+});
+
+// 🔹 Función para crear gráficos de manera más sencilla
+function createChart(canvasId, type, labels, values, label) {
+    const ctx = document.getElementById(canvasId).getContext("2d");
+    new Chart(ctx, {
+        type: type,
+        data: {
+            labels: labels,
+            datasets: [{
+                label: label,
+                data: values,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+</script>
+<style>
+    canvas {
+        max-width: 400px; /* Ancho máximo */
+        max-height: 300px; /* Alto máximo */
+        margin: auto; /* Centrar */
+        display: block; /* Evitar que se expanda */
+    }
+</style>
+{% endblock %}

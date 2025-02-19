@@ -37,8 +37,14 @@ security:
 
     # Control de acceso a rutas
     access_control:
+         # Acceso solo para ADMIN en /admin
         - { path: ^/admin, roles: ROLE_ADMIN }
+        # Redirigir al login si no es ADMIN
+        - { path: ^/admin, roles: IS_AUTHENTICATED_FULLY }
+        # Acceso solo para MANAGER en /manager
         - { path: ^/manager, roles: ROLE_MANAGER }
+        # Redirigir al login si no es MANAGER
+        - { path: ^/manager, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:

@@ -16,6 +16,26 @@ class SongRepository extends ServiceEntityRepository
         parent::__construct($registry, Song::class);
     }
 
+   public function obtainSongsMostReplayedData(): array
+{
+    return $this->createQueryBuilder('c')
+        ->select('c.Title AS Song, c.Replays AS Replays')
+        ->orderBy('c.Replays', 'DESC') // Ordenar por número de reproducciones de mayor a menor
+        ->getQuery()
+        ->getResult();
+}
+
+
+    public function obtainSongsStyleMostReplayedData(): array
+    {
+        return $this->createQueryBuilder('song')
+            ->select('style.Name AS Style, SUM(song.Replays) AS StyleSongReplays')
+            ->join('song.Genre', 'style') //INNER JOIN Song on Style
+            ->groupBy("style.Name")
+            ->orderBy("StyleSongReplays", "DESC") 
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return Song[] Returns an array of Song objects
     //     */
