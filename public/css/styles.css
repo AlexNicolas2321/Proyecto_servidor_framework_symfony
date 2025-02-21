@@ -8,7 +8,7 @@ html, body {
     background-color: #f9fafb; /* Fondo suave para el cuerpo */
     
 }
-
+/*header-----------------------------------*/
 header {
     background-color: #1d4ed8; /* Azul intenso elegante */
     color: white; /* Texto en blanco */
@@ -18,6 +18,58 @@ header {
     height: 80px;
 }
 
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-container input {
+    padding: 8px;
+    font-size: 16px;
+    width: 200px;
+    border: 2px solid #0284c7; /* Borde azul suave */
+    border-radius: 4px;
+}
+
+.search-container button {
+    background-color: #0284c7;
+    color: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: #0369a1; /* Color más oscuro al hacer hover */
+}
+
+.content {
+    flex: 1;
+}
+
+
+
+#img_spotify{
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px; 
+}
+
+#img_Log_in{
+    width: 60px;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px; 
+}
+/*ENDDDDDDDDDDDDDDD header*/
+
+/*main---------------------------------------*/
 main {
     flex: 1;
     display: flex;
@@ -55,26 +107,18 @@ main {
     background-color: #1e40af;
 }
 
-#all_songs {
+#all_songs ,#all_playlists{
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    width: 70%; /* Zona derecha dinámica */
+    width: 100%; /* Zona derecha dinámica */
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
     display: grid; /* Usar grid para organizar las canciones/playlists */
     grid-template-columns: repeat(2, 1fr); /* 2 columnas */
     gap: 20px; /* Espacio entre elementos */
 }
 
-#all_songs h2 {
-    margin-top: 0;
-}
 
-#dynamic-content {
-    margin-top: 20px;
-}
-
-/* Estilos para cada canción o playlist */
 .song-item {
     background-color: #e0f2fe;
     padding: 20px;
@@ -100,6 +144,25 @@ main {
     color: #1d4ed8;
 }
 
+.image {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px;
+}
+.song-paragraph {
+    font-size: 18px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita para el título */
+    color: #1d4ed8; /* Color de texto azul oscuro */
+    background-color: #e0f2fe; /* Fondo suave y azul claro */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px 15px; /* Espaciado interno */
+    margin-bottom: 10px; /* Espacio debajo del párrafo */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: all 0.3s ease; /* Transición para suavizar los efectos */
+}
+
+
 /*******footer-------------------------------------*******/
 footer {
     background-color: #0369a1; /* Azul más oscuro */
@@ -119,8 +182,9 @@ footer {
 }
 
 .song-image {
-    width: 40px; /* Tamaño de la imagen */
+    width: 402px; /* Tamaño de la imagen */
     height: 40px;
+    
    
 
 }
@@ -160,81 +224,16 @@ audio {
 
 
 
-
-
-#img_spotify{
-    width: 100px;
-    height: auto;
-    border-radius: 8px;
-    margin: 10px; 
-}
-
-#img_Log_in{
-    width: 60px;
-    height: auto;
-    border-radius: 8px;
-    margin: 10px; 
-}
-
-.image {
-    width: 150px;
-    height: auto;
-    border-radius: 8px;
-    margin: 10px;
-}
-
-.search-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.search-container input {
-    padding: 8px;
-    font-size: 16px;
-    width: 200px;
-    border: 2px solid #0284c7; /* Borde azul suave */
-    border-radius: 4px;
-}
-
-.search-container button {
-    background-color: #0284c7;
-    color: white;
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.search-container button:hover {
-    background-color: #0369a1; /* Color más oscuro al hacer hover */
-}
-
-.content {
-    flex: 1;
-}
+/*ENDDDDDDDDDDDfooter--------------------------------------*/
 
 
 
 
 
 
-/*paragraph title songs*/
 
-.song-paragraph {
-    font-size: 18px; /* Tamaño de la fuente */
-    font-weight: bold; /* Negrita para el título */
-    color: #1d4ed8; /* Color de texto azul oscuro */
-    background-color: #e0f2fe; /* Fondo suave y azul claro */
-    border-radius: 8px; /* Bordes redondeados */
-    padding: 10px 15px; /* Espaciado interno */
-    margin-bottom: 10px; /* Espacio debajo del párrafo */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: all 0.3s ease; /* Transición para suavizar los efectos */
-}
+
+
 
 
 

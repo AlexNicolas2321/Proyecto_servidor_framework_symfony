@@ -9,13 +9,12 @@ let currentSongIndex = 1; // Índice de la canción actual
 let songs_button = document.getElementById("mySongs");
 let myPlaylists = document.getElementById("myPlaylists");
 let all_songs_div = document.getElementById('all_songs');
-const songs_playlist = document.getElementById("songs_playlist");
+let all_playlists = document.getElementById('all_playlists');
 let array_of_songs=[];
 
 //songs and playlist first time entering the web 
 show_playlists();
 show_songs();
-songs_playlist.textContent = "Your Songs and Playlists";
 
 
 
@@ -25,7 +24,6 @@ songs_playlist.textContent = "Your Songs and Playlists";
 let currentPlaylist = null; // Variable para guardar la playlist actual
 
 function show_playlists() {
-    songs_playlist.textContent = "Your Playlists";
     for (const element of playList) {
         
         let playList_song_div = document.createElement('div');
@@ -34,11 +32,11 @@ function show_playlists() {
         h1.textContent = playlist_title;
 
         h1.addEventListener("click", event => {
-            all_songs_div.innerHTML = ""; // Limpiar el contenedor principal
+            all_playlists.innerHTML = ""; // Limpiar el contenedor principal
 
             const playlistHeader = document.createElement('h1');
             playlistHeader.textContent = playlist_title;
-            all_songs_div.appendChild(playlistHeader);
+            all_playlists.appendChild(playlistHeader);
 
             // Asignar la playlist actual
             currentPlaylist = element;
@@ -70,7 +68,7 @@ function show_playlists() {
                 songDiv.appendChild(songImage);
                 songDiv.appendChild(songTitle);
 
-                all_songs_div.appendChild(songDiv);
+                all_playlists.appendChild(songDiv);
             }
 
             // Cambiar los botones 'next' y 'prev' para manejar el índice de esta playlist
@@ -92,13 +90,12 @@ function show_playlists() {
         });
 
         playList_song_div.appendChild(h1);
-        all_songs_div.appendChild(playList_song_div);
+        all_playlists.appendChild(playList_song_div);
     }
 }
 
 //finished
 function show_songs() {
-    songs_playlist.textContent = "Your Songs";
 
     for (const song of songs) {
         let songDiv = document.createElement('div');

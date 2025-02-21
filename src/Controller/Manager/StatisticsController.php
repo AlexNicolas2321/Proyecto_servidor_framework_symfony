@@ -33,7 +33,7 @@ class StatisticsController extends AbstractController
     //most replayed SONGS
     $obtainSongsMostReplayedData = $SongRepository->obtainSongsMostReplayedData();
 
-    
+    //Ages users
     $obtainUserAgeData = $UserRepository->obtainUserAgeData();
 
     
@@ -47,6 +47,6 @@ class StatisticsController extends AbstractController
         'obtainSongsStyleMostReplayedData' => $obtainSongsStyleMostReplayedData
     ];
 
-    return $this->json($datos); // Convierte el array $datos en una respuesta JSON
+    return $this->json($datos);
     }
 }

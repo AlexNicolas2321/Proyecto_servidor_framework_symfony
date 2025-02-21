@@ -4,26 +4,26 @@
 
 {% block body %}
 <div class="container">
-    <h2>Estadísticas de Reproducciones</h2>
+    <h2>STATISTICS</h2>
 
     <!-- Gráfico de Playlists Más Reproducidas -->
-    <h3>Playlists Más Reproducidas</h3>
+    <h3>Playlists most Replayed</h3>
     <canvas id="reproduccionesChart"></canvas>
 
     <!-- Gráfico de Playlists Más Likeadas -->
-    <h3>Playlists Más Likeadas</h3>
+    <h3>Playlists most liked</h3>
     <canvas id="likesChart"></canvas>
 
     <!-- Gráfico de Canciones Más Reproducidas -->
-    <h3>Canciones Más Reproducidas</h3>
+    <h3>Most replayed Songs</h3>
     <canvas id="songsReplaysChart"></canvas>
 
     <!-- Gráfico de Edades de Usuarios -->
-    <h3>Distribución de Edad de Usuarios</h3>
+    <h3>User ages</h3>
     <canvas id="userAgeChart"></canvas>
 
     <!-- Gráfico de Reproducciones por Estilo de Música -->
-    <h3>Reproducciones por Estilo de Música</h3>
+    <h3>Replays by style</h3>
     <canvas id="styleReplaysChart"></canvas>
 </div>
 
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "bar",
             data.playlist_most_replays.map(item => item.Playlist),
             data.playlist_most_replays.map(item => item.Replays),
-            "Total Reproducciones"
+            "Total Replays"
         );
 
         // 🔹 PLAYLISTS MÁS LIKEADAS
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "bar",
             data.song_most_replays.map(item => item.Song),
             data.song_most_replays.map(item => item.Replays),
-            "Total Reproducciones por Canción"
+            "Total Replays of each Song"
         );
 
         // 🔹 EDADES DE USUARIOS
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "bar",
             data.obtainUserAgeData.map(item => item.Age),
             data.obtainUserAgeData.map(item => item.ageAmount), // Cantidad de usuarios por edad
-            "Distribución de Edades"
+            "User Ages"
         );
 
         // 🔹 REPRODUCCIONES POR ESTILO DE MÚSICA
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "bar",
             data.obtainSongsStyleMostReplayedData.map(item => item.Style),
             data.obtainSongsStyleMostReplayedData.map(item => item.StyleSongReplays),
-            "Reproducciones por Estilo"
+            "Replays by style"
         );
     })
     .catch(error => console.error("Error cargando los datos:", error));
@@ -111,10 +111,16 @@ function createChart(canvasId, type, labels, values, label) {
 </script>
 <style>
     canvas {
-        max-width: 400px; /* Ancho máximo */
-        max-height: 300px; /* Alto máximo */
-        margin: auto; /* Centrar */
+        max-width: 400px; 
+        max-height: 300px;
+        margin: 20px; /* Centrar */
         display: block; /* Evitar que se expanda */
+    }
+    h3{
+          display: flex;
+            /*justify-content: center; /* Centrado horizontal */
+            /*align-items: center; /* Centrado vertical */
+            margin: 20px;
     }
 </style>
 {% endblock %}
