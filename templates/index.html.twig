@@ -12,12 +12,15 @@
         <!-- Imagen de inicio -->
         <img id="img_spotify" src="/img/Spotify_logo.png" alt="Imagen 1">
         
-        <!-- Campo de búsqueda y botón dentro de un contenedor flex -->
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Song...">
-            <button >Search</button>
-        </div>
+        <div class="search-wrapper">
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Song...">
+        <button>Search</button>
+    </div>
+    <div id="searchResults"></div> <!-- Ahora está fuera del .search-container -->
+</div>
 
+       
         <!-- Imagen de final -->
        <a href="/login">
     <img id="img_Log_in" src="/img/User.jpg" alt="Imagen 2">
@@ -32,16 +35,13 @@
         <button id="mySongs">mySongs</button>
         <button id="myPlaylists">myPlaylists</button>
     </div>
-    <section id="main_songs_and_playlists">
-    <h3>Your Songs</h3>
+
     <div id="all_songs">
-       
+        <h2 id="songs_playlist"></h2>
+        <div id="dynamic-content">
+            <!-- Contenido dinámico aquí -->
+        </div>
     </div>
-    <h3>Your Playlists</h3>
-    <div id="all_playlists">
-       
-    </div>
-    </section>
 </main>
 
 

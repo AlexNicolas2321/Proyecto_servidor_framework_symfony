@@ -16,6 +16,19 @@ class PlaylistRepository extends ServiceEntityRepository
         parent::__construct($registry, Playlist::class);
     }
 
+    // src/Repository/PlaylistRepository.php
+public function findByNameLike(string $query, int $limit)
+{
+    return $this->createQueryBuilder('p')
+        ->where('p.Name LIKE :query')
+        ->setParameter('query', '%' . $query . '%')
+        ->setMaxResults($limit)
+        ->getQuery()
+        ->getResult();
+
+        
+}
+
 //    /**
 //     * @return Playlist[] Returns an array of Playlist objects
 //     */

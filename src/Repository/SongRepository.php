@@ -36,6 +36,18 @@ class SongRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    // src/Repository/SongRepository.php
+public function findByTitleLike(string $query, int $limit)
+{
+    return $this->createQueryBuilder('s')
+        ->where('s.Title LIKE :query')
+        ->setParameter('query', '%' . $query . '%')
+        ->setMaxResults($limit)
+        ->getQuery()
+        ->getResult();
+}
+
     //    /**
     //     * @return Song[] Returns an array of Song objects
     //     */

@@ -9,12 +9,13 @@ let currentSongIndex = 1; // Índice de la canción actual
 let songs_button = document.getElementById("mySongs");
 let myPlaylists = document.getElementById("myPlaylists");
 let all_songs_div = document.getElementById('all_songs');
-let all_playlists = document.getElementById('all_playlists');
+const songs_playlist = document.getElementById("songs_playlist");
 let array_of_songs=[];
 
 //songs and playlist first time entering the web 
 show_playlists();
 show_songs();
+songs_playlist.textContent = "Your Songs and Playlists";
 
 
 
@@ -24,6 +25,7 @@ show_songs();
 let currentPlaylist = null; // Variable para guardar la playlist actual
 
 function show_playlists() {
+    songs_playlist.textContent = "Your Playlists";
     for (const element of playList) {
         
         let playList_song_div = document.createElement('div');
@@ -32,11 +34,11 @@ function show_playlists() {
         h1.textContent = playlist_title;
 
         h1.addEventListener("click", event => {
-            all_playlists.innerHTML = ""; // Limpiar el contenedor principal
+            all_songs_div.innerHTML = ""; // Limpiar el contenedor principal
 
             const playlistHeader = document.createElement('h1');
             playlistHeader.textContent = playlist_title;
-            all_playlists.appendChild(playlistHeader);
+            all_songs_div.appendChild(playlistHeader);
 
             // Asignar la playlist actual
             currentPlaylist = element;
@@ -61,14 +63,13 @@ function show_playlists() {
                 songImage.addEventListener("click", () => {
                     loadSong(song);
                     currentSongIndex = currentPlaylist.songs.indexOf(song); // Actualiza el índice de la canción en esta playlist
-                    console.log("Índice actual en playlist:", currentSongIndex);
                 });
 
                 // Agregar elementos al div de la canción
                 songDiv.appendChild(songImage);
                 songDiv.appendChild(songTitle);
 
-                all_playlists.appendChild(songDiv);
+                all_songs_div.appendChild(songDiv);
             }
 
             // Cambiar los botones 'next' y 'prev' para manejar el índice de esta playlist
@@ -90,12 +91,13 @@ function show_playlists() {
         });
 
         playList_song_div.appendChild(h1);
-        all_playlists.appendChild(playList_song_div);
+        all_songs_div.appendChild(playList_song_div);
     }
 }
 
 //finished
 function show_songs() {
+    songs_playlist.textContent = "Your Songs";
 
     for (const song of songs) {
         let songDiv = document.createElement('div');
@@ -179,3 +181,109 @@ myPlaylists.addEventListener("click", event => {
 
 
 
+document.getElementById("searchInput").addEventListener("input", function() {
+    let query = this.value.trim();
+    let resultsDiv = document.getElementById("searchResults");
+
+    if (query === "") {
+        resultsDiv.innerHTML = ""; // Limpiar si el input está vacío
+        resultsDiv.style.display = "none"; // Ocultar resultados
+        return;
+    }
+
+    fetch(`/search?q=${encodeURIComponent(query)}`)
+        .then(response => response.json())
+        .then(data => {
+
+            resultsDiv.innerHTML = ""; // Limpiar resultados anteriores
+
+            if (!data.songs.length && !data.playlists.length) {
+                resultsDiv.style.display = "none"; // Ocultar si no hay resultados
+                return;
+            }
+
+            let resultsList = document.createElement("ul");
+            resultsList.classList.add("search-list");
+
+            // Mostrar canciones en los resultados
+            data.songs.forEach(song => {
+                let songItem = document.createElement("li");
+                songItem.textContent = "🎵 " + song.title;
+                songItem.classList.add("search-item");
+
+                // Añadir evento al hacer click en una canción
+                songItem.addEventListener("click", () => {
+                    loadSong(song); // Cargar la canción seleccionada
+                });
+
+                resultsList.appendChild(songItem);
+            });
+
+            // Mostrar playlists en los resultados
+            data.playlists.forEach(playlist => {
+                let playlistItem = document.createElement("li");
+                playlistItem.textContent = "📜 " + playlist.name;
+                playlistItem.classList.add("search-item");
+
+                // Añadir evento al hacer click en una playlist
+                playlistItem.addEventListener("click", () => {
+                    console.log(playlist);
+                    loadPlaylist(playlist); // Cargar la playlist seleccionada
+                });
+
+                resultsList.appendChild(playlistItem);
+            });
+
+            resultsDiv.appendChild(resultsList);
+            resultsDiv.style.display = "block"; // Mostrar resultados
+        })
+        .catch(error => {
+            console.error("Error en la búsqueda:", error);
+            resultsDiv.innerHTML = "<p>Error al buscar resultados</p>";
+            resultsDiv.style.display = "block"; // Mostrar error
+        });
+});
+// Cargar playlist seleccionada
+function loadPlaylist(playlist) {
+    all_songs_div.innerHTML = ""; // Limpiar la interfaz principal
+
+    // Mostrar el nombre de la playlist
+    const playlistHeader = document.createElement('h1');
+    playlistHeader.textContent = playlist.name;
+    all_songs_div.appendChild(playlistHeader);
+
+    // Recorrer las playlists y mostrar las canciones de la playlist seleccionada
+    for (const pl of playList) {
+        // Compara la playlist seleccionada con las playlists disponibles
+        if (pl.name === playlist.name) {
+            // Recorrer las canciones de la playlist seleccionada
+            for (const song of pl.songs) {
+                let songDiv = document.createElement('div');
+                songDiv.classList.add('song');
+
+                // Crear la imagen de la canción
+                let songImage = document.createElement('img');
+                songImage.className = "image";
+                songImage.src = `/img/${song.fileTitle}.jpg`; // Usando fileTitle para la imagen
+                songImage.alt = `Imagen de ${song.title}`; // Texto alternativo
+
+                // Añadir evento para cargar la canción
+                songImage.addEventListener('click', () => {
+                    loadSong(song);
+                });
+
+                // Crear el título de la canción
+                let songTitle = document.createElement('p');
+                songTitle.className = "song-title";
+                songTitle.textContent = song.title;
+
+                // Agregar la imagen y el título al div de la canción
+                songDiv.appendChild(songImage);
+                songDiv.appendChild(songTitle);
+
+                all_songs_div.appendChild(songDiv);
+            }
+            break; // Salir del ciclo una vez se encuentra la playlist seleccionada
+        }
+    }
+}
