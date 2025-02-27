@@ -243,47 +243,181 @@ document.getElementById("searchInput").addEventListener("input", function() {
             resultsDiv.style.display = "block"; // Mostrar error
         });
 });
-// Cargar playlist seleccionada
-function loadPlaylist(playlist) {
-    all_songs_div.innerHTML = ""; // Limpiar la interfaz principal
 
-    // Mostrar el nombre de la playlist
-    const playlistHeader = document.createElement('h1');
-    playlistHeader.textContent = playlist.name;
-    all_songs_div.appendChild(playlistHeader);
 
-    // Recorrer las playlists y mostrar las canciones de la playlist seleccionada
-    for (const pl of playList) {
-        // Compara la playlist seleccionada con las playlists disponibles
-        if (pl.name === playlist.name) {
-            // Recorrer las canciones de la playlist seleccionada
-            for (const song of pl.songs) {
-                let songDiv = document.createElement('div');
-                songDiv.classList.add('song');
 
-                // Crear la imagen de la canción
-                let songImage = document.createElement('img');
-                songImage.className = "image";
-                songImage.src = `/img/${song.fileTitle}.jpg`; // Usando fileTitle para la imagen
-                songImage.alt = `Imagen de ${song.title}`; // Texto alternativo
 
-                // Añadir evento para cargar la canción
-                songImage.addEventListener('click', () => {
-                    loadSong(song);
-                });
 
-                // Crear el título de la canción
-                let songTitle = document.createElement('p');
-                songTitle.className = "song-title";
-                songTitle.textContent = song.title;
 
-                // Agregar la imagen y el título al div de la canción
-                songDiv.appendChild(songImage);
-                songDiv.appendChild(songTitle);
 
-                all_songs_div.appendChild(songDiv);
+
+
+
+let Playlists_user = document.getElementById("Playlists_user");
+
+Playlists_user.addEventListener("click", event => {
+    all_songs_div.innerHTML = ""; // Limpiar
+
+    fetch('/api/playlists')
+        .then(response => {
+            if (response.status === 401) {
+                document.getElementById('playlists').innerHTML = "No tienes acceso a las playlists.";
+                return [];
             }
-            break; // Salir del ciclo una vez se encuentra la playlist seleccionada
-        }
-    }
-}
+            return response.json();
+        })
+        .then(playlists => {
+            const playlistContainer = document.getElementById('all_songs');
+            playlistContainer.innerHTML = "";  // Limpiar antes de agregar
+
+            // Mostrar las playlists en el contenedor
+            playlists.forEach(playlist => {
+                const item = document.createElement('div');
+                item.textContent = playlist.name;
+                item.setAttribute('data-id', playlist.id);
+                item.classList.add('playlist-item');
+                playlistContainer.appendChild(item);
+
+                // Mostrar las canciones si la playlist tiene canciones
+                if (playlist.canciones && playlist.canciones.length > 0) {
+                    const cancionesContainer = document.createElement('div');
+                    playlist.canciones.forEach(song => {
+                        let songDiv = document.createElement('div');
+                        songDiv.classList.add('song');
+                
+                        // Crear un enlace que contenga la imagen
+                        let songLink = document.createElement('a');
+                        songLink.href = "#"; // Evitar que el enlace recargue la página
+                
+                        // Crear la imagen
+                        let songImage = document.createElement('img');
+                        songImage.className = "image";
+                        songImage.src = `/img/${song.fileTitle + ".jpg"}`; // Ruta de la imagen
+                        songImage.alt = `Imagen de ${song.title}`; // Texto alternativo
+                
+                        // Añadir un evento de clic a la imagen
+                        songImage.addEventListener('click', () => {
+                            loadSong(song);
+                            currentSongIndex = songs.indexOf(song);
+                            console.log("Índice actual:", currentSongIndex);
+                        });
+                
+                        // Añadir la imagen al enlace
+                        songLink.appendChild(songImage);
+                
+                        let songParagraph = document.createElement('p');
+                        songParagraph.className = "song-paragraph";
+                        songParagraph.textContent = `${song.title}`; // Formato del texto
+                
+                        songDiv.appendChild(songLink);
+                        songDiv.appendChild(songParagraph);
+                
+                        all_songs_div.appendChild(songDiv);
+                    });
+                    item.appendChild(cancionesContainer);
+                }
+            });
+        })
+        .catch(error => console.error('Error:', error));
+});
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById('createPlaylistButton').addEventListener('click', function() {
+    
+    
+    // Limpiar cualquier formulario existente
+    all_songs_div.innerHTML = '';
+
+    // Crear el formulario
+    const form = document.createElement('form');
+    form.id = 'createPlaylistForm';
+
+    // Crear el campo para el nombre de la playlist
+    const nameLabel = document.createElement('label');
+    nameLabel.innerText = 'Nombre de la Playlist:';
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.id = 'playlistName';
+    nameInput.required = true;
+    form.appendChild(nameLabel);
+    form.appendChild(nameInput);
+
+    // Crear los checkboxes para las canciones
+    const songLabel = document.createElement('label');
+    songLabel.innerText = 'Selecciona las canciones:';
+    form.appendChild(songLabel);
+    
+    // Suponiendo que `songs` es un array de objetos con los títulos de las canciones
+    songs.forEach(function(song) {
+        const checkboxDiv = document.createElement('div');
+        
+        // Crear un checkbox por cada canción
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = 'songTitles[]';
+        checkbox.value = song.title; // Usar el 'title' de cada canción
+        const checkboxLabel = document.createElement('label');
+        checkboxLabel.innerText = song.title; // Mostrar el 'title' como texto en el label
+        checkboxDiv.appendChild(checkbox);
+        checkboxDiv.appendChild(checkboxLabel);
+        form.appendChild(checkboxDiv);
+    });
+
+    // Crear el botón de enviar
+    const submitButton = document.createElement('button');
+    submitButton.type = 'submit';
+    submitButton.innerText = 'Crear Playlist';
+    form.appendChild(submitButton);
+
+    // Añadir el formulario al contenedor
+    all_songs_div.appendChild(form);
+
+    // Evento para enviar el formulario
+    form.addEventListener('submit', function(event) {
+        alert("entro");
+        event.preventDefault();
+        
+        // Obtener el nombre de la playlist y las canciones seleccionadas
+        const playlistName = document.getElementById('playlistName').value;
+        const selectedSongs = Array.from(document.querySelectorAll('input[name="songTitles[]"]:checked'))
+                                    .map(checkbox => checkbox.value);
+                                    console.log('Selected song titles:', selectedSongs);
+
+        // Enviar los datos al backend
+        fetch('/api/create_playlists', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: playlistName,
+                songTitles: selectedSongs
+            })
+        })
+        .then(response => {
+            // Si la respuesta no es OK (status 200-299)
+            if (!response.ok) {
+                return response.json().then(err => {
+                    throw new Error(err.error || 'Error desconocido');
+                });
+            }
+            return response.json(); // Continuamos solo si la respuesta es válida
+        })
+        .then(data => {
+            alert(data.message); // Mostrar mensaje de éxito
+            location.reload(); // Recargar para mostrar la nueva playlist
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Error: " + error.message); // Mostrar el mensaje de error al usuario
+        });
+        
+    });
+});

@@ -7,22 +7,25 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Email = null;
+    #[ORM\Column(name: "email", length: 255)]  // Asegúrate de que el nombre sea 'email' en minúsculas
+    private ?string $email = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $Password = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)] // <-- Agregar 'nullable: true'
     private ?string $Name = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -50,18 +53,19 @@ class User
     #[ORM\ManyToMany(targetEntity: Song::class, inversedBy: 'users')]
     private Collection $songs;
 
+// Hacer nullable la columna 'roles'
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $roles = null; // Inicializado como null
     public function __construct()
     {
         $this->userPlaylists = new ArrayCollection();
         $this->songs = new ArrayCollection();
     }
 
-    
     public function __toString(): string
     {
         return $this->Name ?? 'Unnamed User'; // Devuelve el nombre del usuario o un valor por defecto
     }
-    
 
     public function getId(): ?int
     {
@@ -70,12 +74,12 @@ class User
 
     public function getEmail(): ?string
     {
-        return $this->Email;
+        return $this->email;
     }
 
-    public function setEmail(string $Email)
+    public function setEmail(string $email): self
     {
-        $this->Email = $Email;
+        $this->email = $email;
 
         return $this;
     }
@@ -85,7 +89,7 @@ class User
         return $this->Password;
     }
 
-    public function setPassword(string $Password)
+    public function setPassword(string $Password): self
     {
         $this->Password = $Password;
 
@@ -97,7 +101,7 @@ class User
         return $this->Name;
     }
 
-    public function setName(string $Name)
+    public function setName(string $Name): self
     {
         $this->Name = $Name;
 
@@ -109,7 +113,7 @@ class User
         return $this->Birth_date;
     }
 
-    public function setBirthDate(\DateTimeInterface $Birth_date)
+    public function setBirthDate(\DateTimeInterface $Birth_date): self
     {
         $this->Birth_date = $Birth_date;
 
@@ -121,7 +125,7 @@ class User
         return $this->Profile;
     }
 
-    public function setProfile(Profile $Profile)
+    public function setProfile(Profile $Profile): self
     {
         $this->Profile = $Profile;
 
@@ -136,7 +140,7 @@ class User
         return $this->playlists;
     }
 
-    public function addPlaylist(Playlist $playlist)
+    public function addPlaylist(Playlist $playlist): self
     {
         if (!$this->playlists->contains($playlist)) {
             $this->playlists->add($playlist);
@@ -146,7 +150,7 @@ class User
         return $this;
     }
 
-    public function removePlaylist(Playlist $playlist)
+    public function removePlaylist(Playlist $playlist): self
     {
         if ($this->playlists->removeElement($playlist)) {
             // set the owning side to null (unless already changed)
@@ -166,7 +170,7 @@ class User
         return $this->userPlaylists;
     }
 
-    public function addUserPlaylist(UserPlaylist $userPlaylist)
+    public function addUserPlaylist(UserPlaylist $userPlaylist): self
     {
         if (!$this->userPlaylists->contains($userPlaylist)) {
             $this->userPlaylists->add($userPlaylist);
@@ -176,7 +180,7 @@ class User
         return $this;
     }
 
-    public function removeUserPlaylist(UserPlaylist $userPlaylist)
+    public function removeUserPlaylist(UserPlaylist $userPlaylist): self
     {
         if ($this->userPlaylists->removeElement($userPlaylist)) {
             // set the owning side to null (unless already changed)
@@ -196,7 +200,7 @@ class User
         return $this->songs;
     }
 
-    public function addSong(Song $song): static
+    public function addSong(Song $song): self
     {
         if (!$this->songs->contains($song)) {
             $this->songs->add($song);
@@ -205,12 +209,34 @@ class User
         return $this;
     }
 
-    public function removeSong(Song $song): static
+    public function removeSong(Song $song): self
     {
         $this->songs->removeElement($song);
 
         return $this;
     }
 
-  
+    // Métodos requeridos por UserInterface
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
+    }
+
+    public function getRoles(): array
+    {
+        // Si no se han asignado roles, se asigna el rol por defecto "ROLE_USER"
+        return $this->roles ?: ['ROLE_USER'];
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // No se almacena información sensible en la entidad, así que no es necesario hacer nada aquí
+    }
 }

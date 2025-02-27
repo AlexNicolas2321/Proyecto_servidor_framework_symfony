@@ -1,50 +1,39 @@
 security:
-    # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
+    # ...
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
-    # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
+    # Proveedor actualizado para la nueva entidad 'User'
     providers:
-        # used to reload user from session & other features (e.g. switch_user)
-        Usuarios:
+        app_user_provider:  # Cambié el nombre a 'app_user_provider' para que coincida con la convención de nombres
             entity:
-                class: App\Entity\Usuario
+                class: App\Entity\User  # Cambié 'Usuario' por 'User'
                 property: email
 
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_(profiler|wdt)|css|images|js)/ 
             security: false
 
         main:
             lazy: true
-            provider: Usuarios  # <--- Cambiado para coincidir con el provider definido arriba
+            provider: app_user_provider  # Cambié 'Usuarios' a 'app_user_provider' 
+            entry_point: App\Security\LoginAuthenticator 
 
-            entry_point: App\Security\LoginAuthenticator # Aquí le dices a Symfony qué autenticador usar
-
-            # Opciones de autenticación (añadir según sea necesario)
             form_login: 
                 login_path: app_login
                 check_path: app_login
-                default_target_path: /home  # Redirigir después del login
+                default_target_path: /home
 
             logout:
                 path: app_logout
                 target: /login
             custom_authenticator: App\Security\LoginAuthenticator
 
-            # switch_user: true  # Para cambiar de usuario en el sistema
-
-    # Control de acceso a rutas
     access_control:
-         # Acceso solo para ADMIN en /admin
         - { path: ^/admin, roles: ROLE_ADMIN }
-        # Redirigir al login si no es ADMIN
-        - { path: ^/admin, roles: IS_AUTHENTICATED_FULLY }
-        # Acceso solo para MANAGER en /manager
         - { path: ^/manager, roles: ROLE_MANAGER }
-        # Redirigir al login si no es MANAGER
-        - { path: ^/manager, roles: IS_AUTHENTICATED_FULLY }
+
 
 when@test:
     security:

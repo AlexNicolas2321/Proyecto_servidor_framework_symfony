@@ -2,7 +2,7 @@
 // src/Controller/UsuarioController.php
 namespace App\Controller;
 
-use App\Entity\Usuario;
+use App\Entity\User;  // Cambié 'Usuario' por 'User'
 use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +19,7 @@ class RegistroControllerv2 extends AbstractController
         UserPasswordHasherInterface $passwordHasher,
         EntityManagerInterface $entityManager
     ): Response {
-        $user = new Usuario();
+        $user = new User();  // Cambié 'Usuario' por 'User'
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -29,8 +29,12 @@ class RegistroControllerv2 extends AbstractController
                     $form->get('password')->getData()
                 )
             );
-            $user->setRoles($form->get('roles')->getData());
-            $entityManager->persist($user);
+            $roles = $form->get('roles')->getData();
+            if (empty($roles)) {
+                $roles = ['ROLE_USER'];  // Asigna un rol por defecto si no se seleccionan roles
+            }
+            $user->setRoles($roles);
+                        $entityManager->persist($user);
             $entityManager->flush();
             return $this->redirectToRoute('app_login');
         }

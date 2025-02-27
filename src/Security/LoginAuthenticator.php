@@ -13,19 +13,19 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials as CredentialsInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
-use App\Repository\UsuarioRepository; // Actualizado a UsuarioRepository
+use App\Repository\UserRepository; // Actualizado a UserRepository
 
 class LoginAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
     private RouterInterface $router;
-    private UsuarioRepository $usuarioRepository; // Definir la propiedad
+    private UserRepository $userRepository; // Cambiado a UserRepository
 
-    public function __construct(RouterInterface $router, UsuarioRepository $usuarioRepository)
+    public function __construct(RouterInterface $router, UserRepository $userRepository)
     {
         $this->router = $router;
-        $this->usuarioRepository = $usuarioRepository; // Inicializar correctamente el repositorio
+        $this->userRepository = $userRepository; // Inicializado correctamente el repositorio
     }
 
     public function authenticate(Request $request): Passport
@@ -34,14 +34,14 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         $password = $request->request->get('password');
 
         // Buscar al usuario por correo
-        $usuario = $this->usuarioRepository->findOneByEmail($email);
+        $user = $this->userRepository->findOneByEmail($email);
 
-        if (!$usuario) {
+        if (!$user) {
             throw new AuthenticationException('Credenciales incorrectas.');
         }
 
         // Verificar si la contraseña es válida
-        if (!password_verify($password, $usuario->getPassword())) {
+        if (!password_verify($password, $user->getPassword())) {
             throw new AuthenticationException('Las credenciales no coinciden.');
         }
 
@@ -60,10 +60,8 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
         // Verificar el rol del usuario y redirigir a la página correspondiente
         if ($user->getRoles('ROLE_ADMIN')) {
-            // Redirigir a la página de administración
             return new RedirectResponse($this->router->generate('admin'));
         } elseif ($user->getRoles('ROLE_MANAGER')) {
-            // Redirigir a la página del manager
             return new RedirectResponse($this->router->generate('statistics'));
         }
     }

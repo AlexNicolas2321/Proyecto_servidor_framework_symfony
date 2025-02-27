@@ -1,14 +1,16 @@
 <?php
+// src/Form/RegistrationFormType.php
 
 namespace App\Form;
 
-use App\Entity\Usuario;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType; // <--- Falta esta importación
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -16,11 +18,14 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
+            ->add('Name', null, [
+                'required' => false,  // Hacer que el nombre sea opcional
+            ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
                     'Admin' => 'ROLE_ADMIN',
                     'User' => 'ROLE_USER',
-                    "Manager" => "ROLE_MANAGER"
+                    'Manager' => 'ROLE_MANAGER'
                 ],
                 'multiple' => true, // Permitir la selección de múltiples roles
                 'expanded' => true, // Mostrar como checkboxes
@@ -29,13 +34,17 @@ class RegistrationFormType extends AbstractType
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Repeat Password'],
+            ])
+            ->add('birthDate', DateType::class, [
+                'widget' => 'single_text', // Muestra la fecha como un solo campo
+                'required' => false, // Puedes hacer que sea opcional
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Usuario::class,
+            'data_class' => User::class,
         ]);
     }
 }
