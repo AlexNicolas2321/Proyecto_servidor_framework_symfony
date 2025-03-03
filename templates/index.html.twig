@@ -1,4 +1,3 @@
-<!-- templates/index.html.twig -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,21 +12,30 @@
         <img id="img_spotify" src="/img/Spotify_logo.png" alt="Imagen 1">
         
         <div class="search-wrapper">
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Song...">
-        <button>Search</button>
-    </div>
-    <div id="searchResults"></div> <!-- Ahora está fuera del .search-container -->
-</div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Song...">
+                <button>Search</button>
+            </div>
+            <div id="searchResults"></div> <!-- Ahora está fuera del .search-container -->
+        </div>
 
-       
-        <!-- Imagen de final -->
-       <a href="/login">
-    <img id="img_Log_in" src="/img/User.jpg" alt="Imagen 2">
-</a>
+        
+        <!-- Botón de login (Se oculta si el usuario está logueado) -->
+        <div id="logged_in">
 
+        <a href="/login" class="button">
+            <button id="log_in_button">Log in</button>
+        </a>
+        <a href="/register" class="button">
+            <button id="log_in_button">Sign up</button>
+        </a>
+        </div>
+
+
+
+        <!-- Mensaje de bienvenida -->
+        <p id="welcomeMessage" style="display: none;"></p>
     </header>
-
 
 <main>
     <div id="options">
@@ -36,19 +44,16 @@
         <button id="myPlaylists">Playlists</button>
         <button id="Playlists_user">Playlists_user</button>
         <button id="createPlaylistButton">CreateNewPlaylist</button>
-
     </div>
 
-    <div id="all_songs">
+    <div id="base">
+        <h1 id="h1_Playlists_title" class="h1_title">Playlists</h1>
+        <div id="all_playlists"></div>
 
-        <h2 id="songs_playlist"></h2>
-        <div id="dynamic-content">
-            <!-- Contenido dinámico aquí -->
-        </div>
+        <h1 id="h1_Songs_title" class="h1_title">Songs</h1>
+        <div id="all_songs"></div>    
     </div>
 </main>
-
-
 
 <footer>
     <div id="current-song">
@@ -66,17 +71,21 @@
     </div>
 </footer>
 
+<script>
+    // Pasar las canciones a una variable de JavaScript
+    const songs = {{ songs|json_encode|raw }};
+    const playList = {{ playList|json_encode|raw }};
+</script>
+
+<script src="{{ asset('js/script.js') }}"></script>
+
+
+<script>
+    var isLoggedIn = {{ app.session.get('user_logged_in', false) ? 'true' : 'false' }};
+    var username = "{{ app.session.get('email', '') }}";
+</script>
 
 
 
-
-
-    <script>
-        // Pasar las canciones a una variable de JavaScript
-        const songs = {{ songs|json_encode|raw }};
-        const playList = {{ playList|json_encode|raw }};
-
-    </script>
-    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

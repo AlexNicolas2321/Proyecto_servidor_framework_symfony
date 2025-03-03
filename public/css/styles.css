@@ -1,13 +1,15 @@
 /* Asegura que el cuerpo ocupe toda la pantalla y mantenga el footer abajo */
 html, body {
-    height: 100%; /* La página ocupa toda la pantalla */
+    height: 100%;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    background-color: #f9fafb; /* Fondo suave para el cuerpo */
-    
+    background-color: #f9fafb;
+    box-sizing: border-box;
 }
+
+
 /*header-----------------------------------*/
 header {
     background-color: #1d4ed8; /* Azul intenso elegante */
@@ -18,6 +20,47 @@ header {
     height: 80px;
     
 }
+
+
+#logged_in{
+    display: flex; /* Usamos flexbox para alinear los elementos en fila */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center; /* Alineamos los elementos verticalmente al centro */
+    gap: 10px; /* Espacio entre los elementos */
+}
+
+/*welcome paragraph*/
+#welcome_paragraph{
+    background-color: #007BFF; /* Azul fuerte */
+    color: white; /* Color del texto blanco */
+    padding: 15px; /* Espaciado alrededor del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    line-height: 1.5; /* Altura de línea para mejor legibilidad */
+}
+/*Log in ,Sign up*/
+
+
+.button {
+    text-decoration: none; /* Evita el subrayado en los enlaces */
+}
+
+#log_in_button ,#logoutButton {
+    background-color: #1DB954; /* Color verde característico de Spotify */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#log_in_button:hover,#logoutButton:hover {
+    background-color: #17a74a; /* Un verde más oscuro al pasar el cursor */
+}
+
 
 /* Mantener la estructura intacta, pero ajustamos el comportamiento */
 .search-wrapper {
@@ -107,29 +150,27 @@ header {
     margin: 10px; 
 }
 
-#img_Log_in{
-    width: 60px;
-    height: auto;
-    border-radius: 8px;
-    margin: 10px; 
-}
 /*ENDDDDDDDDDDDDDDD header*/
 
 /*main---------------------------------------*/
 main {
-    flex: 1;
     display: flex;
-    padding: 5px;
+    flex: 1; /* Asegura que el main ocupe todo el espacio disponible */
+    overflow-y: auto; /* Permite el desplazamiento */
+    padding: 20px; /* Espaciado adecuado */
     gap: 20px;
     background-color: #e0f2fe;
 }
 
+    
 #options {
     background-color: #0284c7;
     color: white;
     padding: 20px;
     border-radius: 8px;
-    width: 20%; /* Zona izquierda fija */
+    width: 25%; /* Zona izquierda fija */
+    margin-left: -10px; /* Desplaza hacia la izquierda */
+
 }
 
 #options h1 {
@@ -138,65 +179,68 @@ main {
 }
 
 #options button {
-    display: block;
-    background-color: #0369a1;
-    color: white;
-    padding: 10px;
-    margin: 10px 0;
-    width: 100%;
+    background-color: #1DB954; /* Color verde característico de Spotify */
     border: none;
-    border-radius: 4px;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
     cursor: pointer;
+    transition: background 0.3s ease;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
 #options button:hover {
     background-color: #1e40af;
 }
 
+#base {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%; /* Cambié de 80% a 100% para que ocupe todo el ancho disponible */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e0e0e0;
+    display: flex; /* Cambié a flex para manejar el contenido dinámicamente */
+    flex-direction: column; /* Asegura que los elementos estén en columna */
+    overflow-y: auto; /* Desplazamiento vertical si el contenido es largo */
+}
+
+
+/* Ajustes de los contenedores de listas */
 #all_songs ,#all_playlists{
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    width: 100%; /* Zona derecha dinámica */
+    width: 100%; 
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-    display: grid; /* Usar grid para organizar las canciones/playlists */
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-    gap: 20px; /* Espacio entre elementos */
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);  
+    gap: 20px; 
 }
 
-
-.song-item {
-    background-color: #e0f2fe;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.song-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
-}
-
-.song-item img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-.song-item h3 {
-    font-size: 18px;
-    color: #1d4ed8;
-}
-
+/* Estilo de la imagen */
 .image {
-    width: 150px;
+    width: 200px;
     height: auto;
     border-radius: 8px;
     margin: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para suavizar el cambio de tamaño y sombra */
+    cursor: pointer; /* Cambia el puntero a una mano */
+
 }
-.song-paragraph {
+
+.image:hover {
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño de la imagen */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Estilo del párrafo de la canción */
+.song_paragraph {
     font-size: 18px; /* Tamaño de la fuente */
     font-weight: bold; /* Negrita para el título */
     color: #1d4ed8; /* Color de texto azul oscuro */
@@ -206,10 +250,83 @@ main {
     margin-bottom: 10px; /* Espacio debajo del párrafo */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
     transition: all 0.3s ease; /* Transición para suavizar los efectos */
+    cursor: pointer; /* Cambia el puntero a una mano */
+}
+
+.song_paragraph:hover {
+    background-color: #1d4ed8; /* Fondo azul oscuro al pasar el ratón */
+    color: #ffffff; /* Cambia el color del texto a blanco */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
 }
 
 
+.playlist_paragraph {
+    font-size: 36px; /* Tamaño grande para el título */
+    font-weight: bold; /* Negrita */
+    color: #4A90E2; /* Color azul suave */
+    text-align: center; /* Centrado */
+    text-transform: uppercase; /* Transformación a mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    padding: 20px 0; /* Espaciado superior e inferior */
+    background-color: white; /* Fondo blanco */
+    transition: all 0.3s ease; /* Transición suave */
+    cursor: pointer; /* Cambia el puntero a mano */
+    border-radius: 8px; /* Bordes redondeados */
+    display: inline-block; /* Para evitar que el contenedor se estire */
+    position: relative; /* Necesario para mantener el flujo */
+}
+
+/* Efecto hover */
+.playlist_paragraph:hover {
+    background-color: #1D4ED8; /* Fondo azul oscuro al hacer hover */
+    color: #ffffff; /* Color del texto a blanco para contraste */
+    transform: scale(1.1); /* Aumenta el tamaño ligeramente */
+    transform-origin: center center; /* Punto de expansión en el centro */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    z-index: 10; /* Asegura que el título se quede por encima de otros elementos */
+}
+
+
+.playlist_paragraph_no_hover {
+    font-size: 36px; /* Tamaño grande para el título */
+    font-weight: bold; /* Negrita */
+    color: #4A90E2; /* Color azul suave */
+    text-align: center; /* Centrado */
+    text-transform: uppercase; /* Transformación a mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    padding: 20px 0; /* Espaciado superior e inferior */
+    background-color: white; /* Fondo blanco */
+    transition: all 0.3s ease; /* Transición suave */
+    border-radius: 8px; /* Bordes redondeados */
+    display: inline-block; /* Para evitar que el contenedor se estire */
+    position: relative; /* Necesario para mantener el flujo */
+    width: 200px;
+    height: 100px;
+}
+
+
+.h1_title {
+    font-size: 36px; /* Tamaño grande para el título */
+    font-weight: bold; /* Poner el texto en negrita */
+    color: #1d4ed8; /* Color azul oscuro */
+    text-align: center; /* Centrado horizontal */
+    margin: 20px 0; /* Espaciado arriba y abajo */
+    padding: 10px 0; /* Espaciado interno */
+    text-transform: uppercase; /* Convertir todo el texto a mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease, color 0.3s ease; /* Transición para suavizar efectos */
+    text-align: left;
+    margin-left: 20px;
+}
+
+
+#img_spotify{
+    cursor: pointer;
+}
 /*******footer-------------------------------------*******/
+
 footer {
     background-color: #0369a1; /* Azul más oscuro */
     color: white;
@@ -219,7 +336,10 @@ footer {
     display: flex; /* Usar Flexbox para alinear los elementos */
     justify-content: center; /* Centra los elementos horizontalmente */
     height: 120px;
+    position: relative; /* Asegura que el footer no se mueva */
+    margin-top: auto; /* Esto empuja el footer al final */
 }
+
 
 #current-song {
     display: flex; /* Usar flex para alinear imagen, título y reproductor */
@@ -253,14 +373,15 @@ audio {
 }
 
 .navigation-buttons button {
-    background-color: #0284c7;
-    color: white;
+    background-color: #1DB954; /* Color verde característico de Spotify */
     border: none;
-    padding: 8px 16px;
-    margin: 5px;
-    border-radius: 4px;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
     cursor: pointer;
-    margin-top: 10px;
+    transition: background 0.3s ease;
     
 }
 
@@ -274,11 +395,57 @@ audio {
 
 
 
+.button{
+    background-color: #1DB954; /* Color verde característico de Spotify */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#createPlaylistForm {
+    background-color: #f0f0f0; /* Color de fondo claro */
+    border: 1px solid #ccc; /* Borde gris claro */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    width: 300px; /* Ancho fijo del formulario */
+    margin: 20px auto; /* Centrado en la pantalla */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
 
 
+#playlistName {
+    width: 100%; /* Que el input ocupe todo el ancho del formulario */
+    padding: 10px; /* Espaciado interno */
+    margin-bottom: 12px; /* Espaciado debajo del input */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente para el input */
+}
 
+#playlistName:focus {
+    outline: none; /* Quitar el borde de enfoque */
+    border-color: #1DB954; /* Resaltar el borde con el color verde de Spotify */
+}
 
+/* Estilo para los checkboxes y los nombres de canciones */
+#createPlaylistForm .checkbox-div {
+    display: flex; /* Usar flexbox para alinear los elementos en una fila */
+    align-items: center; /* Centrar los elementos verticalmente */
+    margin-bottom: 10px; /* Espaciado entre las opciones */
+}
 
+#createPlaylistForm .checkbox-div input[type="checkbox"] {
+    margin-right: 10px; /* Separar el checkbox del nombre de la canción */
+}
+
+#createPlaylistForm .checkbox-div label {
+    font-size: 14px; /* Tamaño de fuente para el nombre de la canción */
+}
 
 
 

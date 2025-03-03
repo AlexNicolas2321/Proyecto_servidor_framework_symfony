@@ -35,7 +35,7 @@ final class IndexController extends AbstractController
             ];
         }
 
-        $playLists =$this->entityManager->getRepository(Playlist::class)->findAll();
+        $playLists = $this->entityManager->getRepository(Playlist::class)->findBy(['Owner' => null]);
 
         $playListData = [];
 

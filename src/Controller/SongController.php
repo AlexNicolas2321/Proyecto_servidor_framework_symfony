@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class SongController extends AbstractController
 {
@@ -63,5 +64,27 @@ class SongController extends AbstractController
         ]);
     }
 
-    
+
+    #[Route('/Song/{songName}/play', name: 'play_music', methods: ['GET'])]
+    public function playMusic(string $songName): Response
+    {
+        // La carpeta mp3 está dentro de public/
+        $musicDirectory = $this->getParameter('kernel.project_dir') . '/public/mp3/';
+        $filePath = $musicDirectory . $songName . '.mp3';
+
+        if (!file_exists($filePath)) {
+            return new Response('Archivo no encontrado', 404);
+        }
+
+        return new BinaryFileResponse($filePath);
+    }
+
+
+    #[Route('/music', name: 'app_music')]
+    public function index(): Response
+    {
+        return $this->render('play/play.html.twig', [
+            'controller_name' => 'MusicController',
+        ]);
+    }
 }

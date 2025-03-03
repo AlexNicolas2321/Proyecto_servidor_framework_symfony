@@ -57,7 +57,8 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
         $user = $token->getUser();
-
+        $request->getSession()->set('user_logged_in', true);  // Marca la sesión como iniciada
+        $request->getSession()->set('email', $request->request->get('email'));
         // Verificar el rol del usuario y redirigir a la página correspondiente
         if ($user->getRoles('ROLE_ADMIN')) {
             return new RedirectResponse($this->router->generate('admin'));
@@ -69,5 +70,12 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     protected function getLoginUrl(Request $request): string
     {
         return $this->router->generate('app_login');
+    }
+    public function logout(Request $request)
+    {
+        // Eliminar la sesión del usuario
+        $request->getSession()->invalidate();  // Esto destruye la sesión
+        return new RedirectResponse($this->router->generate('login'));
+
     }
 }
