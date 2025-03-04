@@ -13,7 +13,7 @@
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" value="{{ last_username }}" required>
 
-        <label for="password">Contraseña:</label>
+        <label for="password">Password:</label>
         <input type="password" name="password" id="password" required>
 
         <button type="submit">Enter</button>
@@ -21,4 +21,8 @@
      <a href="{{ path('app_register') }}">
         <button type="button" class="btn">Sign up</button>
     </a>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}

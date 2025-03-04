@@ -176,6 +176,7 @@ function show_playlists() {
         h1.className = "playlist_paragraph";
 
         h1.addEventListener("click", event => {
+            h1_Songs_title.style.display="none";
             all_playlists_div.innerHTML = ""; // Limpiar el contenedor principal
             all_songs_div.innerHTML="";
             const playlistHeader = document.createElement('h1');
@@ -183,6 +184,8 @@ function show_playlists() {
             playlistHeader.className = "playlist_paragraph_no_hover";
             all_playlists_div.appendChild(playlistHeader);
 
+            const div = document.createElement("div");
+            all_playlists_div.appendChild(div);
             // Asignar la playlist actual
             array_of_songs.length = 0;
 
@@ -228,6 +231,74 @@ function show_playlists() {
     }
 }
 
+function show_single_playlist(playlist) {
+    all_playlists_div.innerHTML = "";
+    h1_Songs_title.style.display = "none";
+    all_songs_div.innerHTML = "";
+    let playList_song_div = document.createElement('div');
+    let playlist_title = playlist.name;
+    const h1 = document.createElement('h1');
+    h1.textContent = `📃🎶 ${playlist_title}`;
+    h1.className = "playlist_paragraph";
+
+    h1.addEventListener("click", event => {
+        h1_Songs_title.style.display = "none";
+        all_playlists_div.innerHTML = ""; // Limpiar el contenedor principal
+        all_songs_div.innerHTML = "";
+        const playlistHeader = document.createElement('h1');
+        playlistHeader.textContent = playlist_title;
+        playlistHeader.className = "playlist_paragraph_no_hover";
+        all_playlists_div.appendChild(playlistHeader);
+
+        const div = document.createElement("div");
+        all_playlists_div.appendChild(div);
+        // Asignar la playlist actual
+        array_of_songs.length = 0;
+        console.log(playlist);
+        for (const song of playlist.songs) {
+            array_of_songs.push(song);
+
+            let songDiv = document.createElement('div');
+            songDiv.classList.add('song'); // Usar la misma clase que en show_songs()
+
+            // Crear el título de la canción
+            let songTitle = document.createElement('p');
+            songTitle.classList.add('song_paragraph'); // Usar la misma clase para el título
+            songTitle.textContent = ` 🎵 ${song.title}`;
+
+            // Crear la imagen de la canción
+            let songImage = document.createElement('img');
+            songImage.className = "image";
+            songImage.src = `/img/${song.fileTitle}.jpg`; // Ruta de la imagen
+            songImage.alt = `Imagen de ${song.title}`; // Texto alternativo
+
+            // Función para cargar la canción y actualizar el índice
+            const loadSongAndSetIndex = () => {
+                loadSong(song);
+                currentSongIndex = array_of_songs.indexOf(song);
+                console.log("Índice actual:", currentSongIndex);
+            };
+
+            // Añadir el evento de clic tanto a la imagen como al título
+            songImage.addEventListener("click", loadSongAndSetIndex);
+            songTitle.addEventListener("click", loadSongAndSetIndex);
+
+            // Agregar elementos al div de la canción
+            songDiv.appendChild(songImage);
+            songDiv.appendChild(songTitle);
+
+            // Añadir la canción a la lista
+            all_playlists_div.appendChild(songDiv);
+        }
+    });
+
+    playList_song_div.appendChild(h1);
+    all_playlists_div.appendChild(playList_song_div);
+}
+
+
+
+
 
 //interface all songs
 songs_button.addEventListener("click", event => {
@@ -262,7 +333,7 @@ document.getElementById("searchInput").addEventListener("input", function () {
 
     fetch(`/search?q=${encodeURIComponent(query)}`)
         .then(response => response.json())
-        .then(data => {
+        .then(data => {console.log(data);
 
             resultsDiv.innerHTML = ""; // Limpiar resultados anteriores
 
@@ -297,7 +368,7 @@ document.getElementById("searchInput").addEventListener("input", function () {
                 // Añadir evento al hacer click en una playlist
                 playlistItem.addEventListener("click", () => {
                     console.log(playlist);
-                    loadPlaylist(playlist); // Cargar la playlist seleccionada
+                    show_single_playlist(playlist); // Cargar la playlist seleccionada
                 });
 
                 resultsList.appendChild(playlistItem);

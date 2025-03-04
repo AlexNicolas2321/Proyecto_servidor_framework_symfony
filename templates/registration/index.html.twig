@@ -1,14 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Sign up</h1>
-    
-    {{ form_start(registrationForm) }}
-        {{ form_widget(registrationForm) }}
-        <button class="btn">Enter</button>
-    {{ form_end(registrationForm) }}
+    <div class="signup-container">
+        <h1>Sign up</h1>
+        
+        {{ form_start(registrationForm) }}
+            {{ form_widget(registrationForm) }}
+            <button class="btn">Enter</button>
+        {{ form_end(registrationForm) }}
 
-    <a href="{{ path('app_login') }}">
-        <button type="button" class="btn">Log in</button>
-    </a>
+        <a href="{{ path('app_login') }}">
+            <button type="button" class="btn">Log in</button>
+        </a>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}  <!-- Esto incluye los estilos definidos previamente en base.html.twig -->
+    <link rel="stylesheet" href="{{ asset('css/signup.css') }}">
 {% endblock %}

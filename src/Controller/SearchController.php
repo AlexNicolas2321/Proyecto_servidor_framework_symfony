@@ -27,8 +27,16 @@ class SearchController extends AbstractController
         $playlists = $playlistRepo->findByNameLike($query, 3);
 
         return $this->json([
-            'songs' => array_map(fn($song) => ['title' => $song->getTitle(), "fileTitle" =>$song->getFile()], $songs),
-            'playlists' => array_map(fn($playlist) => ['name' => $playlist->getName()], $playlists)
+            'songs' => array_map(fn($song) => ['title' => $song->getTitle(), "fileTitle" => $song->getFile()], $songs),
+            'playlists' => array_map(fn($playlist) => [
+                'name' => $playlist->getName(),
+                'songs' => array_map(fn($playlistSong) => [
+                    'title' => $playlistSong->getSong()->getTitle(),
+                    'fileTitle' => $playlistSong->getSong()->getFile()
+                ], $playlist->getPlaylistSongs()->toArray())
+            ], $playlists)
         ]);
+        
+        
     }
 }
