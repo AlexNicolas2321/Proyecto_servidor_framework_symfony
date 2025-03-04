@@ -1,0 +1,15 @@
+monolog:
+    channels: ['user_activity']
+    handlers:
+        user_activity:
+            type: rotating_file
+            path: '%kernel.logs_dir%/user_activity.log'
+            level: info
+            channels: ['user_activity']
+            max_files: 10
+
+        main:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            channels: ["!user_activity"]

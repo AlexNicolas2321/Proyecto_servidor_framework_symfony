@@ -56,26 +56,36 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
+        
         $user = $token->getUser();
-        $request->getSession()->set('user_logged_in', true);  // Marca la sesión como iniciada
-        $request->getSession()->set('email', $request->request->get('email'));
-        // Verificar el rol del usuario y redirigir a la página correspondiente
-        if ($user->getRoles('ROLE_ADMIN')) {
+        // Guardar el estado de la sesión y el nombre de usuario
+        $request->getSession()->set('user_logged_in', true);  // Cambiado a user_logged_in
+        $request->getSession()->set('email', $user->getUserIdentifier());  // Cambiado a email
+    
+        // Verificar el rol del usuario y redirigir
+        if (in_array('ROLE_ADMIN', $user->getRoles())) {
             return new RedirectResponse($this->router->generate('admin'));
-        } elseif ($user->getRoles('ROLE_MANAGER')) {
+        } elseif (in_array('ROLE_MANAGER', $user->getRoles())) {
             return new RedirectResponse($this->router->generate('statistics'));
         }
+        
+        // Redirección por defecto
+        return new RedirectResponse($this->router->generate('home'));
     }
 
     protected function getLoginUrl(Request $request): string
     {
         return $this->router->generate('app_login');
     }
-    public function logout(Request $request)
-    {
-        // Eliminar la sesión del usuario
-        $request->getSession()->invalidate();  // Esto destruye la sesión
-        return new RedirectResponse($this->router->generate('login'));
 
+    public function logout(Request $request): Response
+    {
+        // Eliminar variables específicas de sesión
+        $request->getSession()->remove('is_logged_in');
+        $request->getSession()->remove('username');
+        // Invalidar la sesión completa
+        $request->getSession()->invalidate();
+        
+        return new RedirectResponse($this->router->generate('app_login'));
     }
 }

@@ -420,6 +420,8 @@ Playlists_user.addEventListener("click", event => {
                 item.classList.add('playlist-item');
                 playlistContainer.appendChild(item);
 
+                let div= document.createElement("div");
+                playlistContainer.append(div);
                 // Mostrar las canciones si la playlist tiene canciones
                 if (playlist.canciones && playlist.canciones.length > 0) {
                     const cancionesContainer = document.createElement('div');
