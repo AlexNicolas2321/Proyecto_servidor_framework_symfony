@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceso Denegado{% endblock %}
+
+{% block body %}
+<div class="error-container">
+    <h1>Acceso Denegado</h1>
+    <p>Lo sentimos, no tienes permiso para acceder a esta página.</p>
+    
+    <div class="error-details">
+        <p>Necesitas tener el rol: <strong>{{ needed_role }}</strong></p>
+        <p>Tu rol actual es: <strong>{{ current_role }}</strong></p>
+    </div>
+
+    <div class="navigation-links">
+        <a href="{{ path('home') }}">Home</a>
+        <a href="{{ path('admin') }}">admin</a>
+        <a href="{{ path('statistics') }}">Manager</a>
+        <a href="{{ path('app_logout') }}">logout</a>
+
+
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .error-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        text-align: center;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .error-details {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 4px;
+    }
+
+    .navigation-links {
+        margin-top: 20px;
+    }
+
+    .navigation-links a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    .navigation-links a:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}

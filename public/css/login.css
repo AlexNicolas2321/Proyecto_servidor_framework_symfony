@@ -1,39 +1,42 @@
 /* Estilo para el formulario de login */
 form {
-    width: 300px;
+    width: 400px;
     margin: 0 auto;
-    background-color: #f9f9f9;
+    background-color: #282828;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 h2 {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
-    color: #0056b3;
+    color: #1DB954;
 }
 
 form label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
+    color: #ffffff;
 }
 
 form input[type="email"],
 form input[type="password"] {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #383838;
     border-radius: 4px;
     font-size: 16px;
+    background-color: #383838;
+    color: white;
 }
 
 form input[type="email"]:focus,
 form input[type="password"]:focus {
-    border-color: #66afe9;
+    border-color: #1DB954;
     outline: none;
 }
 
@@ -55,7 +58,7 @@ form button[type="submit"]:hover {
 form .btn {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #383838;
     border: none;
     border-radius: 4px;
     color: white;
@@ -64,16 +67,17 @@ form .btn {
 }
 
 form .btn:hover {
-    background-color: #0056b3;
+    background-color: #1DB954;
 }
 
 .alert {
-    color: red;
-    background-color: #f8d7da;
+    color: white;
+    background-color: #dc3545;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 15px;
 }
+
 button {
     padding: 12px;
     background-color: #1DB954;
@@ -82,12 +86,22 @@ button {
     color: white;
     font-size: 16px;
     cursor: pointer;
-    width: 200px; /* O cualquier tamaño específico que desees para el botón */
-    margin: 0 auto; /* Esto lo centrará en su contenedor */
-    display: block; /* Asegura que el botón sea un bloque, para que pueda tener márgenes automáticos */
+    width: 200px;
+    margin: 0 auto;
+    display: block;
     text-decoration: none;
 }
 
 button:hover {
-    background-color: #1db954b3; /* O cualquier cambio de color al pasar el mouse */
+    background-color: #1ed760;
+}
+
+/* Añadir el fondo negro al body */
+body {
+    background-color: #121212;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    
+    font-family: Arial, sans-serif;
 }

@@ -22,22 +22,25 @@ class RegistroControllerv2 extends AbstractController
         $user = new User();  // Cambié 'Usuario' por 'User'
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
+            // Obtener el rol seleccionado y convertirlo en array
+            $selectedRole = $form->get('roles')->getData();
+            $user->setRoles([$selectedRole]); // Convertir el rol único en array
+
             $user->setPassword(
                 $passwordHasher->hashPassword(
                     $user,
                     $form->get('password')->getData()
                 )
             );
-            $roles = $form->get('roles')->getData();
-            if (empty($roles)) {
-                $roles = ['ROLE_USER'];  // Asigna un rol por defecto si no se seleccionan roles
-            }
-            $user->setRoles($roles);
-                        $entityManager->persist($user);
+
+            $entityManager->persist($user);
             $entityManager->flush();
+
             return $this->redirectToRoute('app_login');
         }
+
         return $this->render('registration/index.html.twig', [
             'registrationForm' => $form->createView(),
         ]);

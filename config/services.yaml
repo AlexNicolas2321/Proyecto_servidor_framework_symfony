@@ -26,7 +26,11 @@ services:
             $userActivityLogger: '@monolog.logger.user_activity'
             $security: '@security.helper'
 
-   
     App\EventListener\SecurityListener:
         tags:
             - { name: kernel.event_subscriber }
+
+    App\Security\AccessDeniedHandler:
+        arguments:
+            $twig: '@twig'
+            $security: '@security.helper'

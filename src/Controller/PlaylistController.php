@@ -12,10 +12,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use App\Service\UserActivityLogger;
 
 
 final class PlaylistController extends AbstractController
 {
+
+    private $userActivityLogger;
+
+    // Inyectamos el servicio UserActivityLogger en el constructor
+    public function __construct(UserActivityLogger $userActivityLogger)
+    {
+        $this->userActivityLogger = $userActivityLogger;
+    }
+
+
     #[Route('/playlist/new', name: 'app_playlist')]
     public function index(EntityManagerInterface $entityManager): JsonResponse
     {
@@ -142,6 +153,10 @@ public function createPlaylist(Request $request, EntityManagerInterface $em): Js
     // Persistir la playlist en la base de datos
     $em->persist($playlist);
     $em->flush();
+
+
+    //guardar en el log 
+    $this->userActivityLogger->logCrudAction('Created', 'Playlist', $playlist->getName());
 
     // Responder con un mensaje
     return new JsonResponse(['message' => 'Playlist creada con éxito'], 201); // Código de éxito 201 para creación

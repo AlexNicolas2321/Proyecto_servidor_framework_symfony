@@ -21,6 +21,7 @@ final class IndexController extends AbstractController
     #[Route('/home', name: 'home')]
     public function index(): Response
     {
+        //$this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso a esta página.');
         // Obtener todas las canciones de la base de datos
         $songs = $this->entityManager->getRepository(Song::class)->findAll();
 

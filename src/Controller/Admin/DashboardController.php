@@ -20,7 +20,7 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso a esta página.');
 
         return $this->render("admin/dashboard.html.twig");
         // Option 1. You can make your dashboard redirect to some common page of your backend

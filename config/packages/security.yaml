@@ -19,6 +19,7 @@ security:
             lazy: true
             provider: app_user_provider  # Cambié 'Usuarios' a 'app_user_provider' 
             entry_point: App\Security\LoginAuthenticator 
+            access_denied_handler: App\Security\AccessDeniedHandler
 
             form_login: 
                 login_path: app_login
@@ -31,8 +32,20 @@ security:
             custom_authenticator: App\Security\LoginAuthenticator
 
     access_control:
+
+        #- { path: ^/home, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/Manager, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/admin, roles: IS_AUTHENTICATED_FULLY }
+        # Rutas para ADMIN (solo ROLE_ADMIN)
+           # Rutas para ADMIN (solo ROLE_ADMIN)
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/manager, roles: ROLE_MANAGER }
+
+    # Rutas para USER (solo ROLE_USER)
+        #- { path: ^/home, roles: ROLE_USER }
+
+    # Rutas para MANAGER (solo ROLE_MANAGER)
+        - { path: ^/Manager, roles: ROLE_MANAGER }
+
 
 
 when@test:

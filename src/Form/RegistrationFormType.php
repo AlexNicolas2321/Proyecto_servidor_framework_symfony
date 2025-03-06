@@ -27,8 +27,10 @@ class RegistrationFormType extends AbstractType
                     'User' => 'ROLE_USER',
                     'Manager' => 'ROLE_MANAGER'
                 ],
-                'multiple' => true, // Permitir la selección de múltiples roles
+                'multiple' => false, // Permitir la selección de múltiples roles
                 'expanded' => true, // Mostrar como checkboxes
+                'mapped' => false,  // Añadir esto para manejar la conversión manualmente
+                'label' => 'Select your role'
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,

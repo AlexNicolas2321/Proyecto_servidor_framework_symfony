@@ -4,7 +4,10 @@
 
 {% block body %}
 <div class="container">
-    <h2>STATISTICS</h2>
+    <div class="header-controls">
+        <h2>STATISTICS</h2>
+        <a href="{{ path('app_logout') }}" class="logout-button">Log out</a>
+    </div>
 
     <!-- Gráfico de Playlists Más Reproducidas -->
     <h3>Playlists most Replayed</h3>
@@ -121,6 +124,28 @@ function createChart(canvasId, type, labels, values, label) {
             /*justify-content: center; /* Centrado horizontal */
             /*align-items: center; /* Centrado vertical */
             margin: 20px;
+    }
+    .header-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+
+    .logout-button {
+        background-color: #dc3545;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .logout-button:hover {
+        background-color: #c82333;
+        text-decoration: none;
+        color: white;
     }
 </style>
 {% endblock %}
