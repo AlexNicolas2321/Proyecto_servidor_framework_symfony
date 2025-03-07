@@ -319,7 +319,9 @@ myPlaylists.addEventListener("click", event => {
     show_playlists();
 });
 
-
+/*$request->query es un objeto que contiene todos los parámetros de consulta de la URL.
+ Por ejemplo, si la URL es algo como https://miapp.com/search?q=rock,
+//  entonces $request->query contendría los parámetros de consulta: ['q' => 'rock']*/ 
 
 document.getElementById("searchInput").addEventListener("input", function () {
     let query = this.value.trim();
@@ -330,7 +332,8 @@ document.getElementById("searchInput").addEventListener("input", function () {
         resultsDiv.style.display = "none"; // Ocultar resultados
         return;
     }
-
+    //query has what the user is searching while encodeURIcomponente is just a way to read the special characters correctly
+    //q is a value setted for the mysql query ,show he takes the value of query
     fetch(`/search?q=${encodeURIComponent(query)}`)
         .then(response => response.json())
         .then(data => {console.log(data);
@@ -530,7 +533,6 @@ document.getElementById('createPlaylistButton').addEventListener('click', functi
 
     // Evento para enviar el formulario
     form.addEventListener('submit', function (event) {
-        alert("entro");
         event.preventDefault();
 
         // Obtener el nombre de la playlist y las canciones seleccionadas

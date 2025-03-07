@@ -11,6 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
+    /*$request->query es un objeto que contiene todos los parámetros de consulta de la URL.
+     Por ejemplo, si la URL es algo como https://miapp.com/search?q=rock,
+     entonces $request->query contendría los parámetros de consulta: ['q' => 'rock']*/ 
     #[Route('/search', name: 'search', methods: ['GET'])]
     public function search(Request $request, SongRepository $songRepo, PlaylistRepository $playlistRepo): JsonResponse
     {

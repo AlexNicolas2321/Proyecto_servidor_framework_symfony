@@ -58,10 +58,13 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         }
         
         $user = $token->getUser();
-        // Guardar el estado de la sesión y el nombre de usuario
-        $request->getSession()->set('user_logged_in', true);  // Cambiado a user_logged_in
-        $request->getSession()->set('email', $user->getUserIdentifier());  // Cambiado a email
-    
+        // Verificar que el usuario no tenga el rol ROLE_ADMIN ni ROLE_MANAGER
+    if (!in_array('ROLE_ADMIN', $user->getRoles()) && !in_array('ROLE_MANAGER', $user->getRoles())) {
+        // Guardar el estado de la sesión y el nombre de usuario solo si es un usuario regular
+        $request->getSession()->set('user_logged_in', true);
+        $request->getSession()->set('email', $user->getUserIdentifier());
+    }
+
         // Verificar el rol del usuario y redirigir
         if (in_array('ROLE_ADMIN', $user->getRoles())) {
             return new RedirectResponse($this->router->generate('admin'));

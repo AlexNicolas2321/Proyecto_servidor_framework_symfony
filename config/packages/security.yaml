@@ -1,14 +1,14 @@
 security:
     # ...
     password_hashers:
-        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto' #como se encripta
 
     # Proveedor actualizado para la nueva entidad 'User'
     providers:
         app_user_provider:  # Cambié el nombre a 'app_user_provider' para que coincida con la convención de nombres
             entity:
                 class: App\Entity\User  # Cambié 'Usuario' por 'User'
-                property: email
+                property: email #campo identificador de user
 
     firewalls:
         dev:
@@ -18,18 +18,19 @@ security:
         main:
             lazy: true
             provider: app_user_provider  # Cambié 'Usuarios' a 'app_user_provider' 
-            entry_point: App\Security\LoginAuthenticator 
-            access_denied_handler: App\Security\AccessDeniedHandler
+            entry_point: App\Security\LoginAuthenticator #Usa la clase LoginAuthenticator para manejar la autenticación.
+            access_denied_handler: App\Security\AccessDeniedHandler # Si un usuario no tiene permiso, maneja la respuesta con esta clase.
+
 
             form_login: 
-                login_path: app_login
+                login_path: app_login # Define la ruta donde está el formulario de login (/login). #securityController
                 check_path: app_login
                 default_target_path: /home
 
             logout:
-                path: app_logout
+                path: app_logout #securityController
                 target: /login
-            custom_authenticator: App\Security\LoginAuthenticator
+            custom_authenticator: App\Security\LoginAuthenticator   #AUTHENTICATOR  ------------------
 
     access_control:
 
