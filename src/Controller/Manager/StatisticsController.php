@@ -14,7 +14,7 @@ class StatisticsController extends AbstractController
     #[Route('/Manager', name: 'statistics')]
     public function index(): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_MANAGER', null, 'No tienes acceso a esta página.');
+        //$this->denyAccessUnlessGranted('ROLE_MANAGER', null, 'No tienes acceso a esta página.');
 
 
         return $this->render('Manager/statistics.html.twig');
@@ -24,7 +24,7 @@ class StatisticsController extends AbstractController
     public function obtainData(PlaylistSongRepository $playlistSongRepository,UserRepository $UserRepository,
     SongRepository $SongRepository,SongRepository $obtainSongsStyleMostReplayedData): JsonResponse
     {
-        $this->denyAccessUnlessGranted('ROLE_MANAGER', null, 'No tienes acceso a esta página.');
+        //$this->denyAccessUnlessGranted('ROLE_MANAGER', null, 'No tienes acceso a esta página.');
 
          // most replayed playlists
     $obtainPlaylistMostReplaysData = $playlistSongRepository->obtainPlaylistMostReplaysData();

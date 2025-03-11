@@ -35,17 +35,17 @@ security:
     access_control:
 
         #- { path: ^/home, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/Manager, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/admin, roles: IS_AUTHENTICATED_FULLY }
+        #- { path: ^/Manager, roles: IS_AUTHENTICATED_FULLY }
+        #- { path: ^/admin, roles: IS_AUTHENTICATED_FULLY }
         # Rutas para ADMIN (solo ROLE_ADMIN)
            # Rutas para ADMIN (solo ROLE_ADMIN)
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        #- { path: ^/admin, roles: ROLE_ADMIN }
 
     # Rutas para USER (solo ROLE_USER)
         #- { path: ^/home, roles: ROLE_USER }
 
     # Rutas para MANAGER (solo ROLE_MANAGER)
-        - { path: ^/Manager, roles: ROLE_MANAGER }
+        #- { path: ^/Manager, roles: ROLE_MANAGER }
 
 
 

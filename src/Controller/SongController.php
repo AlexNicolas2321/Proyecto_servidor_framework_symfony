@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-
+use App\Repository\SongRepository;
 class SongController extends AbstractController
 {
     private $entityManager;
@@ -87,4 +87,45 @@ class SongController extends AbstractController
             'controller_name' => 'MusicController',
         ]);
     }
+
+
+
+    //angular
+    // src/Controller/SongController.php
+
+// Ruta para obtener los likes de todas las canciones
+#[Route('/songs/likes', name: 'get_song_likes', methods: ['GET'])]
+public function getSongLikes(SongRepository $songRepository): JsonResponse
+{
+    $songs = $songRepository->findAll(); // Aquí recuperas todas las canciones
+
+    $songLikes = array_map(function($song) {
+        return [
+            'id' => $song->getId(),
+            'title' => $song->getTitle(),
+            'likes' => $song->getLikes(),
+        ];
+    }, $songs);
+
+    return $this->json($songLikes);
+}
+
+
+// Ruta para actualizar el like de una canción
+#[Route('/songs/{id}/like', name: 'like_song', methods: ['POST'])]
+public function likeSong(int $id, SongRepository $songRepository, EntityManagerInterface $em): JsonResponse
+{
+    $song = $songRepository->find($id);
+
+    if (!$song) {
+        return $this->json(['message' => 'Canción no encontrada'], 404);
+    }
+
+    // Incrementa el contador de likes
+    $song->setLikes($song->getLikes() + 1);
+    $em->flush();
+
+    return $this->json(['likes' => $song->getLikes()]);
+}
+
 }

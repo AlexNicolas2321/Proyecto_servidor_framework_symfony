@@ -1,0 +1,13 @@
+nelmio_cors:
+    defaults:
+        allow_credentials: true  # Solo si usas cookies o autenticación
+        allow_origin: ['http://localhost:4200']  # Asegúrate de permitir tu origen
+        allow_headers: ['Content-Type', 'Authorization']
+        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        expose_headers: ['Link']
+        max_age: 3600
+    paths:
+        '^/':  # Esto aplicará CORS para todas las rutas de tu API
+            allow_origin: ['http://localhost:4200']  # Asegúrate de permitir tu origen
+            allow_headers: ['Content-Type', 'Authorization']
+            allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
